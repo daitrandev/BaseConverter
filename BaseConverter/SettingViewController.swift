@@ -82,14 +82,19 @@ class SettingViewController: UIViewController {
         view.addSubview(decimalPlacesStackViews)
         view.addSubview(themeStackViews)
         
-        decimalPlacesStackViews.constraintTo(top: view.layoutMarginsGuide.topAnchor, bottom: nil, left: view.layoutMarginsGuide.leftAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 8, bottomConstant: 0, leftConstant: 8, rightConstant: -8)
+        decimalPlacesStackViews.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 8).isActive = true
+        decimalPlacesStackViews.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
         decimalPlacesStackViews.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
+        decimalPlacesStackViews.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
         decimalPlacesPickerView.widthAnchor.constraint(equalTo: decimalPlacesStackViews.widthAnchor, multiplier: 0.5).isActive = true
+
         
-        themeStackViews.constraintTo(top: decimalPlacesStackViews.bottomAnchor, bottom: nil, left: view.layoutMarginsGuide.leftAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 8, bottomConstant: 0, leftConstant: 8, rightConstant: -8)
+        themeStackViews.topAnchor.constraint(equalTo: decimalPlacesStackViews.bottomAnchor, constant: 8).isActive = true
+        themeStackViews.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
         themeStackViews.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
+        themeStackViews.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
         themePickerView.widthAnchor.constraint(equalTo: themeStackViews.widthAnchor, multiplier: 0.5).isActive = true
-        
+
         let selectedRowTheme = isLightTheme ? 0 : 1
         themePickerView.selectRow(selectedRowTheme, inComponent: 0, animated: false)
         decimalPlacesPickerView.selectRow(decimalPlaces - 1, inComponent: 0, animated: false)
