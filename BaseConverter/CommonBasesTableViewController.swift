@@ -23,9 +23,7 @@ class CommonBasesTableViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
-    let isFreeVersion = true
-    
+        
     var bannerView: GADBannerView?
     
     var interstitial: GADInterstitial?

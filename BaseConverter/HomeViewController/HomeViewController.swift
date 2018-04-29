@@ -40,13 +40,17 @@ class HomeViewController: UIViewController {
     }
     
     func setupAds() {
-        bannerView = createAndLoadBannerView()
+        if isFreeVersion {
+            bannerView = createAndLoadBannerView()
+        }
     }
     
     @objc func closedButtonAction() {
         delegate?.loadThemeAndUpdateFormat()
         dismiss(animated: true) {
-           self.delegate?.showUpgradeAlert()
+            if isFreeVersion {
+                self.delegate?.showUpgradeAlert()
+            }
         }
     }
     
