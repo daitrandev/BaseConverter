@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  BaseConverter
+
+  Created by Dai Tran on 4/26/18.
+  Copyright © 2018 Dai Tran. All rights reserved.
+*/
+"Home" = "Homepage";
+"Settings" = "Pengaturan";
+"Feedback" = "Umpan balik";
+"Rate" = "Rate";
+"Share" = "Membagikan";
+"UpgradeMessage" = "Upgrade ke Konversi Bilangan++ maka Anda dapat menggunakan tanpa iklan.";
+"Upgrade" = "Mengupgrade";
+"Appname" = "Konversi Bilangan++";
+"CommonBases" = "Common Bases";
+"AllBases" = "All Bases";
+"Base" = "Base";
+"DecimalPlaces" = "Tempat Desimal:";
+"Theme" = "Tema:";
+"LightTheme" = "Ringan";
+"DarkTheme" = "Gelap";
+"Done" = "Selesai";

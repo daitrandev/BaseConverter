@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  BaseConverter
+
+  Created by Dai Tran on 4/26/18.
+  Copyright © 2018 Dai Tran. All rights reserved.
+*/
+"Home" = "主页";
+"Settings" = "设置";
+"Feedback" = "反馈";
+"Rate" = "评价";
+"Share" = "共享";
+"UpgradeMessage" = "升级到基数转换++然后您可以使用没有广告。";
+"Upgrade" = "更新";
+"Appname" = "基数转换++";
+"CommonBases" = "共同的基地";
+"AllBases" = "所有基地";
+"Base" = "基数";
+"DecimalPlaces" = "小数位:";
+"Theme" = "主题:";
+"LightTheme" = "光";
+"DarkTheme" = "黑";
+"Done" = "做完";

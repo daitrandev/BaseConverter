@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  BaseConverter
+
+  Created by Dai Tran on 4/26/18.
+  Copyright © 2018 Dai Tran. All rights reserved.
+*/
+"Home" = "Pagina inicial";
+"Settings" = "Configurações";
+"Feedback" = "Comentários";
+"Rate" = "Classifique-nos";
+"Share" = "Compartilhar";
+"UpgradeMessage" = "Atualize para Conversor de base++ então você pode usar sem anúncios.";
+"Upgrade" = "Atualização";
+"Appname" = "Conversor de base++";
+"CommonBases" = "Bases comuns";
+"AllBases" = "Todas as bases";
+"Base" = "Base";
+"DecimalPlaces" = "Casas Decimais:";
+"Theme" = "Fundo:";
+"LightTheme" = "Claro";
+"DarkTheme" = "Escuro";
+"Done" = "Feito";

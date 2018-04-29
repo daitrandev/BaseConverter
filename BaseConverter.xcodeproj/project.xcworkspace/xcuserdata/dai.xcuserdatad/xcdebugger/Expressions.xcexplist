@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "MainTableViewCell.textField(_:shouldChangeCharactersIn:replacementString:):CommonBasesTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.tag">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainTableViewCell.textFieldEditingChanged(textField:):CommonBasesTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
