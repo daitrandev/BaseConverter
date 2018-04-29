@@ -75,6 +75,7 @@ class CommonBasesTableViewCell: UITableViewCell {
         textField.layer.cornerRadius = 5
         textField.textAlignment = .center
         textField.layer.masksToBounds = true
+        textField.backgroundColor = .white
         textField.layer.borderColor = UserDefaults.standard.bool(forKey: isLightThemeKey) ? UIColor.deepBlue.cgColor : UIColor.orange.cgColor
         textField.returnKeyType = .done
         textField.delegate = self
