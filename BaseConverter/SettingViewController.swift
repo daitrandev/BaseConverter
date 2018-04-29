@@ -21,18 +21,19 @@ class SettingViewController: UIViewController {
     let decimalPlacesLabel: UILabel = {
         let label = UILabel()
         label.text = "Decimal Places:"
+        label.textAlignment = .right
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var decimalPlacesStackViews: UIStackView = {
-        let stackViews = UIStackView(arrangedSubviews: [decimalPlacesLabel, decimalPlacesPickerView])
-        stackViews.axis = .horizontal
-        stackViews.spacing = 10
-        stackViews.translatesAutoresizingMaskIntoConstraints = false
-        return stackViews
-    }()
+//    lazy var decimalPlacesStackViews: UIStackView = {
+//        let stackViews = UIStackView(arrangedSubviews: [decimalPlacesLabel, decimalPlacesPickerView])
+//        stackViews.axis = .horizontal
+//        stackViews.spacing = 10
+//        stackViews.translatesAutoresizingMaskIntoConstraints = false
+//        return stackViews
+//    }()
     
     let themes = [NSLocalizedString("LightTheme", comment: ""),
                   NSLocalizedString("DarkTheme", comment: "")]
@@ -48,17 +49,19 @@ class SettingViewController: UIViewController {
     let themeLabel: UILabel = {
         let label = UILabel()
         label.text = "Theme:"
+        label.textAlignment = .right
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var themeStackViews: UIStackView = {
-        let stackViews = UIStackView(arrangedSubviews: [themeLabel, themePickerView])
-        stackViews.axis = .horizontal
-        stackViews.spacing = 10
-        stackViews.translatesAutoresizingMaskIntoConstraints = false
-        return stackViews
-    }()
+//    lazy var themeStackViews: UIStackView = {
+//        let stackViews = UIStackView(arrangedSubviews: [themeLabel, themePickerView])
+//        stackViews.axis = .horizontal
+//        stackViews.spacing = 10
+//        stackViews.translatesAutoresizingMaskIntoConstraints = false
+//        return stackViews
+//    }()
     
     var decimalPlaces: Int = UserDefaults.standard.integer(forKey: decimalPlaceKey)
     var isLightTheme: Bool = UserDefaults.standard.bool(forKey: isLightThemeKey)
@@ -79,21 +82,40 @@ class SettingViewController: UIViewController {
     func setupViews() {
         
         view.backgroundColor = .white
-        view.addSubview(decimalPlacesStackViews)
-        view.addSubview(themeStackViews)
+//        view.addSubview(decimalPlacesStackViews)
+//        view.addSubview(themeStackViews)
+//
+//        decimalPlacesStackViews.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 8).isActive = true
+//        decimalPlacesStackViews.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
+//        decimalPlacesStackViews.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
+//        decimalPlacesStackViews.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
+//        decimalPlacesPickerView.widthAnchor.constraint(equalTo: decimalPlacesStackViews.widthAnchor, multiplier: 0.5).isActive = true
+//
+//
+//        themeStackViews.topAnchor.constraint(equalTo: decimalPlacesStackViews.bottomAnchor, constant: 8).isActive = true
+//        themeStackViews.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
+//        themeStackViews.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
+//        themeStackViews.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
+//        themePickerView.widthAnchor.constraint(equalTo: themeStackViews.widthAnchor, multiplier: 0.5).isActive = true
+        view.addSubview(decimalPlacesPickerView)
+        view.addSubview(decimalPlacesLabel)
+        view.addSubview(themePickerView)
+        view.addSubview(themeLabel)
         
-        decimalPlacesStackViews.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 8).isActive = true
-        decimalPlacesStackViews.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-        decimalPlacesStackViews.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
-        decimalPlacesStackViews.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
-        decimalPlacesPickerView.widthAnchor.constraint(equalTo: decimalPlacesStackViews.widthAnchor, multiplier: 0.5).isActive = true
-
+        decimalPlacesPickerView.constraintTo(top: view.layoutMarginsGuide.topAnchor, bottom: nil, left: view.centerXAnchor, right: nil, topConstant: 8, bottomConstant: 0, leftConstant: 8, rightConstant: 0)
+        decimalPlacesPickerView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.3).isActive = true
+        decimalPlacesPickerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
         
-        themeStackViews.topAnchor.constraint(equalTo: decimalPlacesStackViews.bottomAnchor, constant: 8).isActive = true
-        themeStackViews.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-        themeStackViews.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
-        themeStackViews.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4).isActive = true
-        themePickerView.widthAnchor.constraint(equalTo: themeStackViews.widthAnchor, multiplier: 0.5).isActive = true
+        decimalPlacesLabel.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -8).isActive = true
+        decimalPlacesLabel.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor).isActive = true
+        decimalPlacesLabel.centerYAnchor.constraint(equalTo: decimalPlacesPickerView.centerYAnchor).isActive = true
+        
+        themePickerView.constraintTo(top: decimalPlacesPickerView.bottomAnchor, bottom: nil, left: decimalPlacesPickerView.leftAnchor, right: decimalPlacesPickerView.rightAnchor, topConstant: 8, bottomConstant: 0, leftConstant: 0, rightConstant: 0)
+        themePickerView.heightAnchor.constraint(equalTo: decimalPlacesPickerView.heightAnchor).isActive = true
+        
+        themeLabel.rightAnchor.constraint(equalTo: decimalPlacesLabel.rightAnchor).isActive = true
+        themeLabel.leftAnchor.constraint(equalTo: decimalPlacesLabel.leftAnchor).isActive = true
+        themeLabel.centerYAnchor.constraint(equalTo: themePickerView.centerYAnchor).isActive = true
 
         let selectedRowTheme = isLightTheme ? 0 : 1
         themePickerView.selectRow(selectedRowTheme, inComponent: 0, animated: false)
