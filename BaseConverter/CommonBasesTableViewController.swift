@@ -225,7 +225,9 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
     
     func presentAlert(title: String, message: String, isUpgradeMessage: Bool) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Done", comment: ""), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Done", comment: ""), style: .cancel, handler: {(action) in
+            self.setNeedsStatusBarAppearanceUpdate()
+        }))
         if (isUpgradeMessage) {
             alert.addAction(UIAlertAction(title: NSLocalizedString("Upgrade", comment: ""), style: .default, handler: { (action) in
                 self.rateApp(appId: "id1283197781") { success in

@@ -11,4 +11,4 @@ import UIKit
 let isLightThemeKey: String = "isLightTheme"
 let decimalPlaceKey: String = "decimalPlaces"
 let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-let isFreeVersion = false
+let isFreeVersion = true
