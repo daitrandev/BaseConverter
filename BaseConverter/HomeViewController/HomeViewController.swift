@@ -21,6 +21,12 @@ class HomeViewController: UIViewController {
         
     var bannerView: GADBannerView?
     
+    var isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return isLightTheme ? .default : .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,13 +67,15 @@ class HomeViewController: UIViewController {
     
     
     func loadTheme() {
-        let isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
+        isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
         
         navigationController?.navigationBar.tintColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
         
         navigationController?.navigationBar.barTintColor = isLightTheme ? UIColor.white : UIColor.black
         
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
+        
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     func presentAlert(title: String, message: String, isUpgradeMessage: Bool) {
@@ -121,7 +129,7 @@ extension HomeViewController: HomeViewDelegate {
             completion(UIApplication.shared.openURL(url))
             return
         }
-        UIApplication.shared.open(url, options: [:], completionHandler: completion)
+        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: completion)
     }
 }
 
@@ -185,4 +193,9 @@ extension HomeViewController : GADBannerViewDelegate {
             bannerView.alpha = 1
         })
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

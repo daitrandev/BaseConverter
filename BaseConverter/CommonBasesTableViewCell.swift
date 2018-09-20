@@ -37,7 +37,7 @@ class CommonBasesTableViewCell: UITableViewCell {
             let baseNum = baseNums[baseTextField.tag]
             let baseString = NSLocalizedString("Base", comment: "")
             let attributedPlaceHolder = NSMutableAttributedString()
-            attributedPlaceHolder.append(NSAttributedString(string: baseString + " \(baseNum)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
+            attributedPlaceHolder.append(NSAttributedString(string: baseString + " \(baseNum)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
             baseTextField.attributedPlaceholder = attributedPlaceHolder
 
             guard let baseTextFieldText = base.baseTextFieldText else { return }
@@ -126,7 +126,7 @@ class CommonBasesTableViewCell: UITableViewCell {
         delegate?.updateAllBases(bases: bases, excepted: textField.tag)
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }

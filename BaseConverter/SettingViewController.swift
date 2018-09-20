@@ -27,14 +27,6 @@ class SettingViewController: UIViewController {
         return label
     }()
     
-//    lazy var decimalPlacesStackViews: UIStackView = {
-//        let stackViews = UIStackView(arrangedSubviews: [decimalPlacesLabel, decimalPlacesPickerView])
-//        stackViews.axis = .horizontal
-//        stackViews.spacing = 10
-//        stackViews.translatesAutoresizingMaskIntoConstraints = false
-//        return stackViews
-//    }()
-    
     let themes = [NSLocalizedString("LightTheme", comment: ""),
                   NSLocalizedString("DarkTheme", comment: "")]
     
@@ -54,17 +46,14 @@ class SettingViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-//    lazy var themeStackViews: UIStackView = {
-//        let stackViews = UIStackView(arrangedSubviews: [themeLabel, themePickerView])
-//        stackViews.axis = .horizontal
-//        stackViews.spacing = 10
-//        stackViews.translatesAutoresizingMaskIntoConstraints = false
-//        return stackViews
-//    }()
+
     
     var decimalPlaces: Int = UserDefaults.standard.integer(forKey: decimalPlaceKey)
     var isLightTheme: Bool = UserDefaults.standard.bool(forKey: isLightThemeKey)
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return isLightTheme ? .default : .lightContent
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         UserDefaults.standard.set(decimalPlaces, forKey: decimalPlaceKey)
@@ -82,21 +71,7 @@ class SettingViewController: UIViewController {
     func setupViews() {
         
         view.backgroundColor = .white
-//        view.addSubview(decimalPlacesStackViews)
-//        view.addSubview(themeStackViews)
-//
-//        decimalPlacesStackViews.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 8).isActive = true
-//        decimalPlacesStackViews.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-//        decimalPlacesStackViews.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
-//        decimalPlacesStackViews.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
-//        decimalPlacesPickerView.widthAnchor.constraint(equalTo: decimalPlacesStackViews.widthAnchor, multiplier: 0.5).isActive = true
-//
-//
-//        themeStackViews.topAnchor.constraint(equalTo: decimalPlacesStackViews.bottomAnchor, constant: 8).isActive = true
-//        themeStackViews.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-//        themeStackViews.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
-//        themeStackViews.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6).isActive = true
-//        themePickerView.widthAnchor.constraint(equalTo: themeStackViews.widthAnchor, multiplier: 0.5).isActive = true
+
         view.addSubview(decimalPlacesPickerView)
         view.addSubview(decimalPlacesLabel)
         view.addSubview(themePickerView)
@@ -134,15 +109,7 @@ class SettingViewController: UIViewController {
         
         view.backgroundColor = isLightTheme ? UIColor.white : UIColor.black
         
-        if (isLightTheme) {
-            UIApplication.shared.statusBarStyle = .default
-            
-            navigationController?.navigationBar.tintColor = UIColor.deepBlue
-        } else {
-            UIApplication.shared.statusBarStyle = .lightContent
-            
-            navigationController?.navigationBar.tintColor = UIColor.orange
-        }
+        navigationController?.navigationBar.tintColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
         
         for i in 0..<labelArray.count {
             labelArray[i].textColor = isLightTheme ? UIColor.black : UIColor.white
@@ -152,7 +119,9 @@ class SettingViewController: UIViewController {
         
         navigationController?.navigationBar.barTintColor = isLightTheme ? UIColor.white : UIColor.black
         
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
+        
+        setNeedsStatusBarAppearanceUpdate()
     }
 }
 
@@ -188,11 +157,11 @@ extension SettingViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let textColor = isLightTheme ? UIColor.black : UIColor.white
         if pickerView == decimalPlacesPickerView {
-            let attributedString = NSAttributedString(string: "\(row + 1)", attributes: [NSAttributedStringKey.foregroundColor: textColor])
+            let attributedString = NSAttributedString(string: "\(row + 1)", attributes: [NSAttributedString.Key.foregroundColor: textColor])
             return attributedString
         }
         
-        let attributedString = NSAttributedString(string: themes[row], attributes: [NSAttributedStringKey.foregroundColor: textColor])
+        let attributedString = NSAttributedString(string: themes[row], attributes: [NSAttributedString.Key.foregroundColor: textColor])
         return attributedString
     }
 }

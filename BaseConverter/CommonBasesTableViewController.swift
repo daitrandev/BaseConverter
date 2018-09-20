@@ -28,6 +28,11 @@ class CommonBasesTableViewController: UIViewController {
     
     var interstitial: GADInterstitial?
 
+    var isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return isLightTheme ? .default : .lightContent
+    }
     
     override func viewDidLoad() {
         // Do any additional setup after loading the view, typically from a nib.
@@ -126,19 +131,19 @@ extension CommonBasesTableViewController: HomeViewControllerDelegate {
     }
     
     func loadThemeAndUpdateFormat() {
-        let isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
+        isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
         
         self.tableView.backgroundColor = isLightTheme ? UIColor.white : UIColor.black
         
         navigationController?.navigationBar.barTintColor = isLightTheme ? UIColor.white : UIColor.black
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
         navigationController?.navigationBar.tintColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
         
         tabBarController?.tabBar.tintColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
         tabBarController?.tabBar.barTintColor = isLightTheme ? UIColor.white : UIColor.black
         
-        UIApplication.shared.statusBarStyle = isLightTheme ? .default : .lightContent
-        
+        setNeedsStatusBarAppearanceUpdate()
+                
         view.backgroundColor = isLightTheme ? UIColor.white : UIColor.black
         
         guard let visibleCells = tableView.visibleCells as? [CommonBasesTableViewCell] else { return }
@@ -241,9 +246,14 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
             completion(UIApplication.shared.openURL(url))
             return
         }
-        UIApplication.shared.open(url, options: [:], completionHandler: completion)
+        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: completion)
     }
 
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}
