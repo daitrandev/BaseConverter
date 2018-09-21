@@ -481,6 +481,7 @@
 			baseConfigurationReference = 481E8899EDFB57962C3941FF /* Pods-BaseConverter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8SW848K42;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -493,7 +494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -505,6 +506,7 @@
 			baseConfigurationReference = 6FD9E1811255130990B49B02 /* Pods-BaseConverter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8SW848K42;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -517,7 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

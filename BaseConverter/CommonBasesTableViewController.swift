@@ -230,6 +230,7 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
         }))
         if (isUpgradeMessage) {
             alert.addAction(UIAlertAction(title: NSLocalizedString("Upgrade", comment: ""), style: .default, handler: { (action) in
+                self.setNeedsStatusBarAppearanceUpdate()
                 self.rateApp(appId: "id1283197781") { success in
                     print("RateApp \(success)")
                 }
