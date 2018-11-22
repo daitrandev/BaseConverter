@@ -25,7 +25,6 @@
 		23CD58D3208E355A00B128E7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD58D2208E355A00B128E7 /* SettingViewController.swift */; };
 		23E6060B208C0EAE007C5710 /* CommonBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060A208C0EAE007C5710 /* CommonBasesTableViewCell.swift */; };
 		23E6060D208C3198007C5710 /* AllBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060C208C3198007C5710 /* AllBasesTableViewCell.swift */; };
-		23FBEF08209575A900030140 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23FBEF07209575A900030140 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23FBEF08209575A900030140 /* GoogleMobileAds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +430,10 @@
 				);
 				INFOPLIST_FILE = BaseConverter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -453,7 +454,10 @@
 				);
 				INFOPLIST_FILE = BaseConverter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
