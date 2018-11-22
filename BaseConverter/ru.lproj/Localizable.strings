@@ -21,3 +21,6 @@
 "LightTheme" = "Светлая";
 "DarkTheme" = "Темная";
 "Done" = "Готово";
+"Copied" = "Скопированы";
+"Nothing to copy" = "Нечего копировать";
+

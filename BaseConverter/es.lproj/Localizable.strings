@@ -21,3 +21,5 @@
 "LightTheme" = "Claro";
 "DarkTheme" = "Oscuro";
 "Done" = "Hecho";
+"Copied" = "Copiado";
+"Nothing to copy" = "Nada para copiar";

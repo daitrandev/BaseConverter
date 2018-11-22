@@ -21,3 +21,5 @@
 "LightTheme" = "Sáng";
 "DarkTheme" = "Tối";
 "Done" = "Xong";
+"Copied" = "Đã sao chép";
+"Nothing to copy" = "Không có gì để sao chép";

@@ -21,3 +21,5 @@
 "LightTheme" = "라이트";
 "DarkTheme" = "다크";
 "Done" = "끝난";
+"Copied" = "복사";
+"Nothing to copy" = "복사 할 내용이 없습니다";

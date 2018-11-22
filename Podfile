@@ -7,4 +7,5 @@ target 'BaseConverter' do
 
   # Pods for BaseConverter
   pod 'IQKeyboardManagerSwift'
+  pod 'Google-Mobile-Ads-SDK'
 end

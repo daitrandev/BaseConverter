@@ -21,3 +21,5 @@
 "LightTheme" = "Ringan";
 "DarkTheme" = "Gelap";
 "Done" = "Selesai";
+"Copied" = "Disalin";
+"Nothing to copy" = "Tidak ada yang perlu disalin";

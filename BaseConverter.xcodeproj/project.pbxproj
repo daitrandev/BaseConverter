@@ -26,7 +26,6 @@
 		23E6060B208C0EAE007C5710 /* CommonBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060A208C0EAE007C5710 /* CommonBasesTableViewCell.swift */; };
 		23E6060D208C3198007C5710 /* AllBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060C208C3198007C5710 /* AllBasesTableViewCell.swift */; };
 		23FBEF08209575A900030140 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23FBEF07209575A900030140 /* GoogleMobileAds.framework */; };
-		2D6875B938EE47250D28E067 /* Pods_BaseConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0BAD3ADC4C9D98ED17256D5 /* Pods_BaseConverter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,9 +74,6 @@
 		23E6060A208C0EAE007C5710 /* CommonBasesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBasesTableViewCell.swift; sourceTree = "<group>"; };
 		23E6060C208C3198007C5710 /* AllBasesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBasesTableViewCell.swift; sourceTree = "<group>"; };
 		23FBEF07209575A900030140 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
-		481E8899EDFB57962C3941FF /* Pods-BaseConverter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaseConverter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BaseConverter/Pods-BaseConverter.debug.xcconfig"; sourceTree = "<group>"; };
-		6FD9E1811255130990B49B02 /* Pods-BaseConverter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaseConverter.release.xcconfig"; path = "Pods/Target Support Files/Pods-BaseConverter/Pods-BaseConverter.release.xcconfig"; sourceTree = "<group>"; };
-		D0BAD3ADC4C9D98ED17256D5 /* Pods_BaseConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaseConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +82,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				23FBEF08209575A900030140 /* GoogleMobileAds.framework in Frameworks */,
-				2D6875B938EE47250D28E067 /* Pods_BaseConverter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +93,6 @@
 			children = (
 				230E7F71208A2F2B0081F401 /* BaseConverter */,
 				230E7F70208A2F2B0081F401 /* Products */,
-				340C58E41962EC955148D4E7 /* Pods */,
 				9FC2853FAC7C347B19553CA9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -145,20 +139,10 @@
 			path = HomeViewController;
 			sourceTree = "<group>";
 		};
-		340C58E41962EC955148D4E7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				481E8899EDFB57962C3941FF /* Pods-BaseConverter.debug.xcconfig */,
-				6FD9E1811255130990B49B02 /* Pods-BaseConverter.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		9FC2853FAC7C347B19553CA9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				23FBEF07209575A900030140 /* GoogleMobileAds.framework */,
-				D0BAD3ADC4C9D98ED17256D5 /* Pods_BaseConverter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,11 +154,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 230E7F81208A2F2C0081F401 /* Build configuration list for PBXNativeTarget "BaseConverter" */;
 			buildPhases = (
-				406327D5B3B7703E0547B889 /* [CP] Check Pods Manifest.lock */,
 				230E7F6B208A2F2B0081F401 /* Sources */,
 				230E7F6C208A2F2B0081F401 /* Frameworks */,
 				230E7F6D208A2F2B0081F401 /* Resources */,
-				0EF55503361ACED6E6E93754 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -245,45 +227,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0EF55503361ACED6E6E93754 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BaseConverter/Pods-BaseConverter-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BaseConverter/Pods-BaseConverter-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		406327D5B3B7703E0547B889 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BaseConverter-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		230E7F6B208A2F2B0081F401 /* Sources */ = {
@@ -478,9 +421,8 @@
 		};
 		230E7F82208A2F2C0081F401 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 481E8899EDFB57962C3941FF /* Pods-BaseConverter.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconFree;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8SW848K42;
@@ -490,10 +432,7 @@
 				);
 				INFOPLIST_FILE = BaseConverter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -503,9 +442,8 @@
 		};
 		230E7F83208A2F2C0081F401 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6FD9E1811255130990B49B02 /* Pods-BaseConverter.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconFree;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8SW848K42;
@@ -515,10 +453,7 @@
 				);
 				INFOPLIST_FILE = BaseConverter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

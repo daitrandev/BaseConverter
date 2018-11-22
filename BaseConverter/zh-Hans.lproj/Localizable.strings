@@ -21,3 +21,5 @@
 "LightTheme" = "光";
 "DarkTheme" = "黑";
 "Done" = "做完";
+"Copied" = "复制";
+"Nothing to copy" = "无需复制";

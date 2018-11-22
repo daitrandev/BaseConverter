@@ -111,7 +111,11 @@ extension CommonBasesTableViewController: UITableViewDataSource, UITableViewDele
 
 }
 
-extension CommonBasesTableViewController: CommonTableViewCellDataSource {
+extension CommonBasesTableViewController: CommonTableViewCellDelegate {
+    func presentCopiedAlert(message: String) {
+        self.presentAlert(title: message, message: "", isUpgradeMessage: false)
+    }
+    
     func updateAllBases(bases: [Base], excepted tag: Int) {
         self.bases = bases
         guard let visibleCells = tableView.visibleCells as? [CommonBasesTableViewCell] else { return }

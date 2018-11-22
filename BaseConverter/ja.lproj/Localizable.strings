@@ -21,3 +21,5 @@
 "LightTheme" = "明るい";
 "DarkTheme" = "暗い";
 "Done" = "完了";
+"Copied" = "コピー";
+"Nothing to copy" = "コピーするものはありません";

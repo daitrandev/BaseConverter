@@ -8,8 +8,9 @@
 
 import UIKit
 
-protocol CommonTableViewCellDataSource: class {
+protocol CommonTableViewCellDelegate: class {
     func updateAllBases(bases: [Base], excepted tag: Int)
+    func presentCopiedAlert(message: String)
 }
 
 class CommonBasesTableViewCell: UITableViewCell {
@@ -20,7 +21,7 @@ class CommonBasesTableViewCell: UITableViewCell {
     
     var baseTexts = ["BIN", "OCT", "DEC", "HEX"]
         
-    weak var delegate: CommonTableViewCellDataSource?
+    weak var delegate: CommonTableViewCellDelegate?
     
     var base: Base? {
         didSet {
@@ -84,6 +85,15 @@ class CommonBasesTableViewCell: UITableViewCell {
         return textField
     }()
     
+    lazy var copyButton: UIButton = {
+        let button = UIButton(type: UIButton.ButtonType.custom)
+        let buttonImage = UserDefaults.standard.bool(forKey: isLightThemeKey) ? UIImage(named: "copy-blue") : UIImage(named: "copy-orange")
+        button.setImage(buttonImage, for: .normal)
+        button.addTarget(self, action: #selector(onCopyAction), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     @objc func textFieldEditingChanged(textField: UITextField) {
         guard let newString = textField.text?.components(separatedBy: .whitespacesAndNewlines).joined() else { return }
         textField.text = newString.uppercased()
@@ -141,12 +151,27 @@ class CommonBasesTableViewCell: UITableViewCell {
         
         addSubview(baseLabel)
         addSubview(baseTextField)
+        addSubview(copyButton)
         
         baseLabel.constraintTo(top: topAnchor, bottom: bottomAnchor, left: contentView.leftAnchor, right: nil, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
         baseLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         
-        baseTextField.constraintTo(top: topAnchor, bottom: bottomAnchor, left: baseLabel.rightAnchor, right: contentView.rightAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
+        baseTextField.constraintTo(top: topAnchor, bottom: bottomAnchor, left: baseLabel.rightAnchor, right: copyButton.leftAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
         
+        copyButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8).isActive = true
+        copyButton.centerYAnchor.constraint(equalTo: baseTextField.centerYAnchor).isActive = true
+        copyButton.widthAnchor.constraint(equalTo: copyButton.heightAnchor).isActive = true
+        copyButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        
+    }
+    
+    @objc func onCopyAction() {
+        if baseTextField.text != "" {
+            UIPasteboard.general.string = baseTextField.text!
+            delegate?.presentCopiedAlert(message: NSLocalizedString("Copied", comment: ""))
+        } else {
+            delegate?.presentCopiedAlert(message: NSLocalizedString("Nothing to copy", comment: ""))
+        }
     }
     
     func updateLabelColor() {
