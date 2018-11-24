@@ -100,7 +100,7 @@ extension CommonBasesTableViewController: UITableViewDataSource, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBasesTableViewCell
         cell.base = bases[indexPath.row]
         cell.tag = indexPath.row
-        cell.updateLabelColor()
+        cell.updateColor()
         cell.delegate = self
         return cell
     }
@@ -153,7 +153,7 @@ extension CommonBasesTableViewController: HomeViewControllerDelegate {
         guard let visibleCells = tableView.visibleCells as? [CommonBasesTableViewCell] else { return }
         for i in 0..<visibleCells.count {
             visibleCells[i].backgroundColor = view.backgroundColor
-            visibleCells[i].updateLabelColor()
+            visibleCells[i].updateColor()
             let tag = visibleCells[i].tag
             visibleCells[i].base = bases[tag]
         }

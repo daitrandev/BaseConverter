@@ -174,10 +174,12 @@ class CommonBasesTableViewCell: UITableViewCell {
         }
     }
     
-    func updateLabelColor() {
+    func updateColor() {
         let isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
         baseLabel.backgroundColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
         baseTextField.layer.borderColor = isLightTheme ? UIColor.deepBlue.cgColor : UIColor.orange.cgColor
+        let copyImage = isLightTheme ? UIImage(named: "copy-blue") : UIImage(named: "copy-orange")
+        copyButton.setImage(copyImage, for: .normal)
     }
 }
 
