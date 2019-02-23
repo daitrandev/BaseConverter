@@ -102,7 +102,7 @@ class SettingViewController: UIViewController {
         
         decimalPlacesLabel.text = NSLocalizedString("DecimalPlaces", comment: "")
         themeLabel.text = NSLocalizedString("Theme", comment: "")
-        navigationItem.title = NSLocalizedString("Settings", comment: "")
+        navigationItem.title = NSLocalizedString("Setting", comment: "")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "close"), style: .done, target: self, action: #selector(didTapClose))
     }
     
