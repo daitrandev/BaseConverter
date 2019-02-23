@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SettingDelegate: class {
+    func loadThemeAndUpdateFormat()
+}
+
 class SettingViewController: UIViewController {
     
     lazy var decimalPlacesPickerView: UIPickerView = {
@@ -99,7 +103,11 @@ class SettingViewController: UIViewController {
         decimalPlacesLabel.text = NSLocalizedString("DecimalPlaces", comment: "")
         themeLabel.text = NSLocalizedString("Theme", comment: "")
         navigationItem.title = NSLocalizedString("Settings", comment: "")
-
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "close"), style: .done, target: self, action: #selector(didTapClose))
+    }
+    
+    @objc private func didTapClose() {
+        dismiss(animated: true, completion: nil)
     }
     
     func loadTheme() {

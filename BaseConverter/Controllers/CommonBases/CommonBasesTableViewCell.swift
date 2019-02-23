@@ -20,6 +20,8 @@ class CommonBasesTableViewCell: UITableViewCell {
     var baseNums = [2, 8, 10, 16]
     
     var baseTexts = ["BIN", "OCT", "DEC", "HEX"]
+    
+    var isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool ?? true
         
     weak var delegate: CommonTableViewCellDelegate?
     
@@ -151,18 +153,23 @@ class CommonBasesTableViewCell: UITableViewCell {
         
         addSubview(baseLabel)
         addSubview(baseTextField)
-        addSubview(copyButton)
         
         baseLabel.constraintTo(top: topAnchor, bottom: bottomAnchor, left: contentView.leftAnchor, right: nil, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
         baseLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         
-        baseTextField.constraintTo(top: topAnchor, bottom: bottomAnchor, left: baseLabel.rightAnchor, right: copyButton.leftAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
-        
-        copyButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8).isActive = true
-        copyButton.centerYAnchor.constraint(equalTo: baseTextField.centerYAnchor).isActive = true
-        copyButton.widthAnchor.constraint(equalTo: copyButton.heightAnchor).isActive = true
-        copyButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        
+//        guard let isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool else { return }
+//        if isFreeVersion {
+            baseTextField.constraintTo(top: topAnchor, bottom: bottomAnchor, left: baseLabel.rightAnchor, right: rightAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
+//        } else {
+//            addSubview(copyButton)
+//
+//            baseTextField.constraintTo(top: topAnchor, bottom: bottomAnchor, left: baseLabel.rightAnchor, right: copyButton.leftAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
+//
+//            copyButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8).isActive = true
+//            copyButton.centerYAnchor.constraint(equalTo: baseTextField.centerYAnchor).isActive = true
+//            copyButton.widthAnchor.constraint(equalTo: copyButton.heightAnchor).isActive = true
+//            copyButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+//        }
     }
     
     @objc func onCopyAction() {

@@ -18,27 +18,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Base Converter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQC-mi-CAU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Base Converter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fx6-23-PTn">
                                 <rect key="frame" x="52" y="309.5" width="271" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.1764705882352941" green="0.28627450980392155" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2019 Dai Tran. All rights reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPP-X1-UjA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2019 Dai Tran. All rights reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86N-uJ-qbG">
                                 <rect key="frame" x="42.5" y="643" width="290" height="16"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.1764705882" green="0.28627450980000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.1764705882352941" green="0.28627450980392155" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="GQC-mi-CAU" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3h6-KO-MRc"/>
-                            <constraint firstItem="HPP-X1-UjA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eFo-1L-rUF"/>
-                            <constraint firstItem="GQC-mi-CAU" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ig4-yd-wvq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HPP-X1-UjA" secondAttribute="bottom" constant="8" id="rsP-cS-0BA"/>
+                            <constraint firstItem="Fx6-23-PTn" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="10k-n8-G5L"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="86N-uJ-qbG" secondAttribute="bottom" constant="8" id="gaw-5Z-M1K"/>
+                            <constraint firstItem="Fx6-23-PTn" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gfm-kh-hxQ"/>
+                            <constraint firstItem="86N-uJ-qbG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uHv-Tx-soX"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

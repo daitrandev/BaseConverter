@@ -7,5 +7,16 @@ target 'BaseConverter' do
 
   # Pods for BaseConverter
   pod 'IQKeyboardManagerSwift'
-  #pod 'Google-Mobile-Ads-SDK'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'SideMenu'
+end
+
+target 'BaseConverterFree' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for BaseConverterFree
+  pod 'IQKeyboardManagerSwift'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'SideMenu'
 end

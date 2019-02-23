@@ -31,7 +31,7 @@ extension UIView {
 
 extension UINavigationController {
     open override var childForStatusBarStyle: UIViewController? {
-        return visibleViewController
+        return topViewController
     }
 }
 
@@ -43,4 +43,11 @@ extension Character {
 
 extension UIColor {
     static let deepBlue: UIColor = UIColor(red: 40/255, green: 84/255, blue: 223/255, alpha: 1)
+}
+
+extension UIImage {
+    convenience init?(menuSection: MenuSection, theme: Theme) {
+        let menuIconName = menuSection.rawValue + "-" + theme.rawValue
+        self.init(named: menuIconName)
+    }
 }

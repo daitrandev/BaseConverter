@@ -22,6 +22,8 @@ class HomeViewController: UIViewController {
     var bannerView: GADBannerView?
     
     var isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
+    
+    var isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool ?? true
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return isLightTheme ? .default : .lightContent
@@ -35,12 +37,6 @@ class HomeViewController: UIViewController {
     }
     
     func setupViews() {
-        guard let homeView = HomeView.instanceFromNib() as? HomeView else { return }
-        homeView.updateLabelText()
-        homeView.delegate = self
-        
-        view = homeView
-        
         navigationItem.title = NSLocalizedString("Home", comment: "")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "close"), style: .done, target: self, action: #selector(closedButtonAction))
     }
@@ -54,7 +50,7 @@ class HomeViewController: UIViewController {
     @objc func closedButtonAction() {
         delegate?.loadThemeAndUpdateFormat()
         dismiss(animated: true) {
-            if isFreeVersion {
+            if self.isFreeVersion {
                 self.delegate?.showUpgradeAlert()
             }
         }
@@ -62,7 +58,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadTheme()
-        (view as? HomeView)?.loadTheme()
     }
     
     
@@ -76,63 +71,6 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
         
         setNeedsStatusBarAppearanceUpdate()
-    }
-    
-    func presentAlert(title: String, message: String, isUpgradeMessage: Bool) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Done", comment: ""), style: .cancel, handler: {(action) in
-            self.setNeedsStatusBarAppearanceUpdate()
-        }))
-        if (isUpgradeMessage) {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Upgrade", comment: ""), style: .default, handler: { (action) in
-                self.setNeedsStatusBarAppearanceUpdate()
-                self.rateApp(appId: "id1283197781") { success in
-                    print("RateApp \(success)")
-                }
-            }))
-        }
-        
-        present(alert, animated: true, completion: nil)
-    }
-}
-
-extension HomeViewController: HomeViewDelegate {
-    func pushViewController(viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
-    func presentMailComposeViewController() {
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeViewController, animated: true, completion: nil)
-        }
-    }
-    
-    func presentShareAction() {
-        let appId = isFreeVersion ? "id1290607683" : "id1283197781"
-        let message: String = "https://itunes.apple.com/app/\(appId)"
-        let vc = UIActivityViewController(activityItems: [message], applicationActivities: [])
-        vc.popoverPresentationController?.sourceView = self.view
-        present(vc, animated: true)
-    }
-    
-    func presentRatingAction() {
-        let appId = isFreeVersion ? "id1290607683" : "id1283197781"
-        rateApp(appId: appId) { success in
-            print("RateApp \(success)")
-        }
-    }
-    
-    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
-        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
-            completion(false)
-            return
-        }
-        guard #available(iOS 10, *) else {
-            completion(UIApplication.shared.openURL(url))
-            return
-        }
-        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: completion)
     }
 }
 
