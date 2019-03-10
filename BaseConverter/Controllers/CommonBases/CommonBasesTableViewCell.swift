@@ -21,7 +21,7 @@ class CommonBasesTableViewCell: UITableViewCell {
     
     var baseTexts = ["BIN", "OCT", "DEC", "HEX"]
     
-    var isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool ?? true
+    let isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool ?? true
         
     weak var delegate: CommonTableViewCellDelegate?
     
@@ -158,7 +158,7 @@ class CommonBasesTableViewCell: UITableViewCell {
         baseLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
         
         guard let isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool else { return }
-        if isFreeVersion {
+        if !isFreeVersion {
             baseTextField.constraintTo(top: topAnchor, bottom: bottomAnchor, left: baseLabel.rightAnchor, right: rightAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
         } else {
             addSubview(copyButton)

@@ -22,6 +22,11 @@ class CommonBasesTableViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+        tableView.register(CommonBasesTableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -39,9 +44,11 @@ class CommonBasesTableViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        // Do any additional setup after loading the view, typically from a nib.
+        view.addSubview(tableView)
+        
         setupAds()
         setupTableView()
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "home"), style: .done, target: self, action: #selector(didTapHome))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshButtonAction))
         self.title = NSLocalizedString("CommonBases", comment: "")
@@ -84,12 +91,6 @@ class CommonBasesTableViewController: UIViewController {
     }
     
     func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = false
-        tableView.register(CommonBasesTableViewCell.self, forCellReuseIdentifier: cellId)
-        view.addSubview(tableView)
         tableView.constraintTo(top: view.layoutMarginsGuide.topAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, topConstant: 0, bottomConstant: 0, leftConstant: 0, rightConstant: 0)
     }
     
@@ -121,7 +122,7 @@ class CommonBasesTableViewController: UIViewController {
         if (isUpgradeMessage) {
             alert.addAction(UIAlertAction(title: NSLocalizedString("Upgrade", comment: ""), style: .default, handler: { (action) in
                 self.setNeedsStatusBarAppearanceUpdate()
-                self.rateApp(appId: "id1283197781") { success in
+                self.rateApp(appId: appId) { success in
                     print("RateApp \(success)")
                 }
             }))
@@ -211,15 +212,15 @@ extension CommonBasesTableViewController: MenuViewControllerDelegate {
     }
     
     func presentRatingAction() {
-        let appId = "id1283197781"
-        rateApp(appId: appId) { success in
+        let appIdString = isFreeVersion ? appIdFree : appId
+        rateApp(appId: appIdString) { success in
             print("RateApp \(success)")
         }
     }
     
     func presentShareAction() {
-        let appId = "id1283197781"
-        let message: String = "https://itunes.apple.com/app/\(appId)"
+        let appIdString = isFreeVersion ? appIdFree : appId
+        let message: String = "https://itunes.apple.com/app/\(appIdString)"
         let vc = UIActivityViewController(activityItems: [message], applicationActivities: [])
         vc.popoverPresentationController?.sourceView = self.view
         present(vc, animated: true)
@@ -232,7 +233,7 @@ extension CommonBasesTableViewController:  MFMailComposeViewControllerDelegate {
         mailComposerVC.mailComposeDelegate = self
         
         mailComposerVC.setToRecipients(["universappteam@gmail.com"])
-        mailComposerVC.setSubject("[ASCII-Converter++ Feedback]")
+        mailComposerVC.setSubject("[Base-Converter++ Feedback]")
         
         return mailComposerVC
     }
@@ -265,7 +266,8 @@ extension CommonBasesTableViewController : GADBannerViewDelegate {
 
 extension CommonBasesTableViewController : GADInterstitialDelegate {
     private func createAndLoadInterstitial() -> GADInterstitial? {
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-7005013141953077/5926785468")
+        let adUnitID = debug ? interstialAdsUnitIDTrial : interstialAdsUnitID
+        interstitial = GADInterstitial(adUnitID: adUnitID)
         
         guard let interstitial = interstitial else {
             return nil
@@ -285,7 +287,7 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
         guard let bannerView = bannerView else {
             return nil
         }
-        bannerView.adUnitID = "ca-app-pub-7005013141953077/4204266995"
+        bannerView.adUnitID = debug ? bannerAdsUnitIDTrial : bannerAdsUnitID
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self

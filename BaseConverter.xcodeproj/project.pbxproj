@@ -19,7 +19,6 @@
 		230E7F8D208A42950081F401 /* AllBasesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230E7F8C208A42950081F401 /* AllBasesTableViewController.swift */; };
 		237BC733208DC04A00F30C3E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237BC732208DC04A00F30C3E /* Utilities.swift */; };
 		23ADE6B220906AA4005FDC04 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE6B120906AA4005FDC04 /* Constants.swift */; };
-		23CD58C9208E1E7500B128E7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD58C8208E1E7500B128E7 /* HomeViewController.swift */; };
 		23CD58D3208E355A00B128E7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD58D2208E355A00B128E7 /* SettingViewController.swift */; };
 		23E6060B208C0EAE007C5710 /* CommonBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060A208C0EAE007C5710 /* CommonBasesTableViewCell.swift */; };
 		23E6060D208C3198007C5710 /* AllBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060C208C3198007C5710 /* AllBasesTableViewCell.swift */; };
@@ -36,7 +35,6 @@
 		FA2BBCC322203BF8004FAE6D /* CommonBasesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230E7F74208A2F2B0081F401 /* CommonBasesTableViewController.swift */; };
 		FA2BBCC422203BF8004FAE6D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230E7F8A208A41250081F401 /* MainTabBarController.swift */; };
 		FA2BBCC522203BF8004FAE6D /* CommonBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060A208C0EAE007C5710 /* CommonBasesTableViewCell.swift */; };
-		FA2BBCC722203BF8004FAE6D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD58C8208E1E7500B128E7 /* HomeViewController.swift */; };
 		FA2BBCC822203BF8004FAE6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE6B120906AA4005FDC04 /* Constants.swift */; };
 		FA2BBCC922203BF8004FAE6D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230E7F86208A39EC0081F401 /* Extensions.swift */; };
 		FA2BBCCA22203BF8004FAE6D /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237BC732208DC04A00F30C3E /* Utilities.swift */; };
@@ -88,7 +86,6 @@
 		23C19BD320932B1C00BAF1DE /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23C19BD420932C5300BAF1DE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		23C19BD520932C5300BAF1DE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		23CD58C8208E1E7500B128E7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		23CD58D2208E355A00B128E7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		23E6060A208C0EAE007C5710 /* CommonBasesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBasesTableViewCell.swift; sourceTree = "<group>"; };
 		23E6060C208C3198007C5710 /* AllBasesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBasesTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,7 +123,6 @@
 				230E7F71208A2F2B0081F401 /* BaseConverter */,
 				230E7F70208A2F2B0081F401 /* Products */,
 				9FC2853FAC7C347B19553CA9 /* Frameworks */,
-				4E7B5872203D1ACA27B19094 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,21 +155,6 @@
 				FA2BBCE322204696004FAE6D /* LaunchScreenFree.storyboard */,
 			);
 			path = BaseConverter;
-			sourceTree = "<group>";
-		};
-		23CD58D1208E339F00B128E7 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				23CD58C8208E1E7500B128E7 /* HomeViewController.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		4E7B5872203D1ACA27B19094 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		9FC2853FAC7C347B19553CA9 /* Frameworks */ = {
@@ -224,7 +205,6 @@
 		FA1523922220EE1000784B11 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				23CD58D1208E339F00B128E7 /* Home */,
 				FA1523912220EDFB00784B11 /* Menu */,
 				FA1523862220ED0300784B11 /* AllBases */,
 				FA1523852220ECF800784B11 /* CommonBases */,
@@ -360,7 +340,6 @@
 				FA1523882220ED2400784B11 /* MenuViewController.swift in Sources */,
 				230E7F8B208A41250081F401 /* MainTabBarController.swift in Sources */,
 				23E6060B208C0EAE007C5710 /* CommonBasesTableViewCell.swift in Sources */,
-				23CD58C9208E1E7500B128E7 /* HomeViewController.swift in Sources */,
 				23ADE6B220906AA4005FDC04 /* Constants.swift in Sources */,
 				FA15238B2220ED6D00784B11 /* Menu.swift in Sources */,
 				FA15238F2220EDDD00784B11 /* MenuTableViewCell.swift in Sources */,
@@ -383,7 +362,6 @@
 				FA1523892220ED2400784B11 /* MenuViewController.swift in Sources */,
 				FA2BBCC422203BF8004FAE6D /* MainTabBarController.swift in Sources */,
 				FA2BBCC522203BF8004FAE6D /* CommonBasesTableViewCell.swift in Sources */,
-				FA2BBCC722203BF8004FAE6D /* HomeViewController.swift in Sources */,
 				FA2BBCC822203BF8004FAE6D /* Constants.swift in Sources */,
 				FA15238C2220ED6D00784B11 /* Menu.swift in Sources */,
 				FA1523902220EDDD00784B11 /* MenuTableViewCell.swift in Sources */,
