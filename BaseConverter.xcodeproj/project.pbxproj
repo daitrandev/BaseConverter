@@ -44,7 +44,6 @@
 		FA2BBCD022203BF8004FAE6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 230DDAFF20920E0F0091CC2C /* Localizable.strings */; };
 		FA2BBCD222203BF8004FAE6D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 230DDAFC20920E0A0091CC2C /* InfoPlist.strings */; };
 		FA2BBCD422203BF8004FAE6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 230E7F79208A2F2C0081F401 /* Assets.xcassets */; };
-		FA2BBCE5222047AF004FAE6D /* LaunchScreenFree.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA2BBCE322204696004FAE6D /* LaunchScreenFree.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,7 +95,6 @@
 		FA1523932220EE9A00784B11 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		FA2BBCD822203BF8004FAE6D /* BaseConverterFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseConverterFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2BBCD922203BF9004FAE6D /* InfoFree.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoFree.plist; sourceTree = "<group>"; };
-		FA2BBCE322204696004FAE6D /* LaunchScreenFree.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreenFree.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +150,6 @@
 				230E7F7B208A2F2C0081F401 /* LaunchScreen.storyboard */,
 				230E7F7E208A2F2C0081F401 /* Info.plist */,
 				FA2BBCD922203BF9004FAE6D /* InfoFree.plist */,
-				FA2BBCE322204696004FAE6D /* LaunchScreenFree.storyboard */,
 			);
 			path = BaseConverter;
 			sourceTree = "<group>";
@@ -322,7 +319,6 @@
 			files = (
 				FA2BBCD022203BF8004FAE6D /* Localizable.strings in Resources */,
 				FA2BBCD222203BF8004FAE6D /* InfoPlist.strings in Resources */,
-				FA2BBCE5222047AF004FAE6D /* LaunchScreenFree.storyboard in Resources */,
 				FA2BBCD422203BF8004FAE6D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
