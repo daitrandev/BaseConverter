@@ -155,7 +155,7 @@ class CommonBasesTableViewCell: UITableViewCell {
         baseLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         guard let isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool else { return }
-        if !isFreeVersion {
+        if isFreeVersion {
             baseTextField.constraintTo(top: baseLabel.bottomAnchor, bottom: contentView.bottomAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
         } else {
             addSubview(copyButton)
