@@ -63,11 +63,8 @@ class CommonBasesTableViewCell: UITableViewCell {
         label.text = "Base"
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
         label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
-        label.textColor = .white
-        label.backgroundColor = UserDefaults.standard.bool(forKey: isLightThemeKey) ? .deepBlue : .orange
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -154,16 +151,16 @@ class CommonBasesTableViewCell: UITableViewCell {
         addSubview(baseLabel)
         addSubview(baseTextField)
         
-        baseLabel.constraintTo(top: topAnchor, bottom: bottomAnchor, left: contentView.leftAnchor, right: nil, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
-        baseLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        baseLabel.constraintTo(top: topAnchor, bottom: nil, left: contentView.leftAnchor, right: nil, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
+        baseLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         guard let isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool else { return }
         if !isFreeVersion {
-            baseTextField.constraintTo(top: topAnchor, bottom: bottomAnchor, left: baseLabel.rightAnchor, right: rightAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
+            baseTextField.constraintTo(top: baseLabel.bottomAnchor, bottom: contentView.bottomAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
         } else {
             addSubview(copyButton)
 
-            baseTextField.constraintTo(top: topAnchor, bottom: bottomAnchor, left: baseLabel.rightAnchor, right: copyButton.leftAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
+            baseTextField.constraintTo(top: baseLabel.bottomAnchor, bottom: contentView.bottomAnchor, left: contentView.leftAnchor, right: copyButton.leftAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
 
             copyButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8).isActive = true
             copyButton.centerYAnchor.constraint(equalTo: baseTextField.centerYAnchor).isActive = true
@@ -183,7 +180,7 @@ class CommonBasesTableViewCell: UITableViewCell {
     
     func updateColor() {
         let isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
-        baseLabel.backgroundColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
+        baseLabel.textColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
         baseTextField.layer.borderColor = isLightTheme ? UIColor.deepBlue.cgColor : UIColor.orange.cgColor
         let copyImage = isLightTheme ? UIImage(named: "copy-blue") : UIImage(named: "copy-orange")
         copyButton.setImage(copyImage, for: .normal)

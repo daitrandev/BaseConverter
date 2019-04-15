@@ -12,7 +12,7 @@ let isLightThemeKey: String = "isLightTheme"
 let decimalPlaceKey: String = "decimalPlaces"
 let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-let debug = true
+let debug = false
 
 let bannerAdsUnitIDTrial = "ca-app-pub-3940256099942544/2934735716"
 let bannerAdsUnitID = "ca-app-pub-7005013141953077/4204266995"

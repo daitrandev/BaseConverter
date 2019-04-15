@@ -72,6 +72,7 @@
 		FA1C09C9226427670062D979 /* SideMenuTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C09C2226427660062D979 /* SideMenuTransition.swift */; };
 		FA1C09CA226427670062D979 /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C09C3226427660062D979 /* UITableViewVibrantCell.swift */; };
 		FA1C09CB226427670062D979 /* UITableViewVibrantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1C09C3226427660062D979 /* UITableViewVibrantCell.swift */; };
+		FA1C09CC2264336C0062D979 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 230E7F7B208A2F2C0081F401 /* LaunchScreen.storyboard */; };
 		FA2BBCC122203BF8004FAE6D /* AllBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060C208C3198007C5710 /* AllBasesTableViewCell.swift */; };
 		FA2BBCC222203BF8004FAE6D /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230E7F88208A3D5E0081F401 /* Base.swift */; };
 		FA2BBCC322203BF8004FAE6D /* CommonBasesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230E7F74208A2F2B0081F401 /* CommonBasesTableViewController.swift */; };
@@ -474,6 +475,7 @@
 				FA2BBCD022203BF8004FAE6D /* Localizable.strings in Resources */,
 				FA2BBCD222203BF8004FAE6D /* InfoPlist.strings in Resources */,
 				FA1C09B0226426EA0062D979 /* IQKeyboardManager.bundle in Resources */,
+				FA1C09CC2264336C0062D979 /* LaunchScreen.storyboard in Resources */,
 				FA2BBCD422203BF8004FAE6D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -752,7 +754,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -776,7 +778,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
