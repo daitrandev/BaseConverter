@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = MainTabBarController()
         
         IQKeyboardManager.shared.enable = true
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-7005013141953077~4579899457")
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
                 
         return true
     }

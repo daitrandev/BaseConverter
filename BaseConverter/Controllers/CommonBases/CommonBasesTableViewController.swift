@@ -273,8 +273,6 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
         }
         
         let request = GADRequest()
-        // Remove the following line before you upload the app
-        request.testDevices = [ kGADSimulatorID ]
         interstitial.load(request)
         interstitial.delegate = self
         
@@ -303,7 +301,7 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
     }
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        ad.present(fromRootViewController: self)
+        //ad.present(fromRootViewController: self)
     }
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {

@@ -43,5 +43,14 @@
 	<true/>
 	<key>isFreeVersion</key>
 	<false/>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-7005013141953077~4579899457</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
