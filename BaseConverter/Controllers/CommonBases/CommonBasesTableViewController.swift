@@ -48,34 +48,17 @@ class CommonBasesTableViewController: UIViewController {
         setupAds()
         setupTableView()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "home"), style: .done, target: self, action: #selector(didTapHome))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshButtonAction))
         self.title = NSLocalizedString("CommonBases", comment: "")
         
         if UserDefaults.standard.object(forKey: isLightThemeKey) == nil {
             UserDefaults.standard.set(true, forKey: isLightThemeKey)
         }
-        
-        if UserDefaults.standard.object(forKey: decimalPlaceKey) == nil {
-            UserDefaults.standard.set(20, forKey: decimalPlaceKey)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadThemeAndUpdateFormat()
-    }
-    
-    @objc func didTapHome() {
-        let menuViewController = MenuViewController()
-        menuViewController.delegate = self
-        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: menuViewController)
-        
-        SideMenuManager.default.menuLeftNavigationController?.navigationBar.backgroundColor = .blue
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        SideMenuManager.default.menuFadeStatusBar = false
-        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     @objc func refreshButtonAction() {
@@ -191,54 +174,6 @@ extension CommonBasesTableViewController: CommonTableViewCellDelegate {
             let index = visibleCells[i].tag
             visibleCells[i].base = bases[index]
         }
-    }
-}
-
-
-extension CommonBasesTableViewController: MenuViewControllerDelegate {
-    func presentSetting() {
-        let vc = SettingViewController()
-        let navigationVC = UINavigationController(rootViewController: vc)
-        navigationVC.navigationItem.title = "Setting"
-        self.present(navigationVC, animated: true, completion: nil)
-    }
-    
-    func presentMailComposer() {
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeViewController, animated: true, completion: nil)
-        }
-    }
-    
-    func presentRatingAction() {
-        let appIdString = isFreeVersion ? appIdFree : appId
-        rateApp(appId: appIdString) { success in
-            print("RateApp \(success)")
-        }
-    }
-    
-    func presentShareAction() {
-        let appIdString = isFreeVersion ? appIdFree : appId
-        let message: String = "https://itunes.apple.com/app/\(appIdString)"
-        let vc = UIActivityViewController(activityItems: [message], applicationActivities: [])
-        vc.popoverPresentationController?.sourceView = self.view
-        present(vc, animated: true)
-    }
-}
-
-extension CommonBasesTableViewController:  MFMailComposeViewControllerDelegate {
-    func configuredMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self
-        
-        mailComposerVC.setToRecipients(["universappteam@gmail.com"])
-        mailComposerVC.setSubject("[Base-Converter++ Feedback]")
-        
-        return mailComposerVC
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }
 

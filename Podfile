@@ -7,6 +7,7 @@ target 'BaseConverter' do
 
   # Pods for BaseConverter
   pod 'Google-Mobile-Ads-SDK'
+  pod 'IQKeyboardManagerSwift'
 end
 
 target 'BaseConverterFree' do
@@ -15,4 +16,5 @@ target 'BaseConverterFree' do
 
   # Pods for BaseConverterFree
   pod 'Google-Mobile-Ads-SDK'
+  pod 'IQKeyboardManagerSwift'
 end

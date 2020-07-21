@@ -43,18 +43,18 @@ class CommonBasesTableViewCell: UITableViewCell {
             attributedPlaceHolder.append(NSAttributedString(string: baseString + " \(baseNum)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
             baseTextField.attributedPlaceholder = attributedPlaceHolder
 
-            guard let baseTextFieldText = base.baseTextFieldText else { return }
-            if baseTextFieldText.contains(Character(".")) || baseTextFieldText.contains(Character(",")) {
-                let decimalPlaces = UserDefaults.standard.integer(forKey: decimalPlaceKey)
-                let lhs = baseTextFieldText.components(separatedBy: CharacterSet.init(charactersIn: ".,"))[0]
-                let rhs = baseTextFieldText.components(separatedBy: CharacterSet.init(charactersIn: ".,"))[1]
-                var endIndex = baseTextFieldText.index(rhs.startIndex, offsetBy: decimalPlaces, limitedBy: rhs.endIndex)
-                if endIndex == nil {
-                    endIndex = rhs.endIndex
-                }
-                let seperateCharacter = baseTextFieldText.contains(Character(".")) ? "." : ","
-                baseTextField.text = lhs + seperateCharacter + rhs[..<endIndex!]
-            }
+//            guard let baseTextFieldText = base.baseTextFieldText else { return }
+//            if baseTextFieldText.contains(Character(".")) || baseTextFieldText.contains(Character(",")) {
+//                let decimalPlaces = UserDefaults.standard.integer(forKey: decimalPlaceKey)
+//                let lhs = baseTextFieldText.components(separatedBy: CharacterSet.init(charactersIn: ".,"))[0]
+//                let rhs = baseTextFieldText.components(separatedBy: CharacterSet.init(charactersIn: ".,"))[1]
+//                var endIndex = baseTextFieldText.index(rhs.startIndex, offsetBy: decimalPlaces, limitedBy: rhs.endIndex)
+//                if endIndex == nil {
+//                    endIndex = rhs.endIndex
+//                }
+//                let seperateCharacter = baseTextFieldText.contains(Character(".")) ? "." : ","
+//                baseTextField.text = lhs + seperateCharacter + rhs[..<endIndex!]
+//            }
         }
     }
     

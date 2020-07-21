@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
