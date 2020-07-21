@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMobileAds
-import MessageUI
 
 class CommonBasesTableViewController: UIViewController {
 
@@ -76,39 +75,16 @@ class CommonBasesTableViewController: UIViewController {
         tableView.constraintTo(top: view.layoutMarginsGuide.topAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, topConstant: 0, bottomConstant: 0, leftConstant: 0, rightConstant: 0)
     }
     
-    func setupAds() {
-        if isFreeVersion {
-            bannerView = createAndLoadBannerView()
-            interstitial = createAndLoadInterstitial()
-        }
+    private func setupAds() {
+        bannerView = createAndLoadBannerView()
+        interstitial = createAndLoadInterstitial()
     }
-    
-    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
-        guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
-            completion(false)
-            return
-        }
-        guard #available(iOS 10, *) else {
-            completion(UIApplication.shared.openURL(url))
-            return
-        }
-        UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: completion)
-    }
-    
     
     func presentAlert(title: String, message: String, isUpgradeMessage: Bool) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Done", comment: ""), style: .cancel, handler: {(action) in
             self.setNeedsStatusBarAppearanceUpdate()
         }))
-        if (isUpgradeMessage) {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Upgrade", comment: ""), style: .default, handler: { (action) in
-                self.setNeedsStatusBarAppearanceUpdate()
-                self.rateApp(appId: appId) { success in
-                    print("RateApp \(success)")
-                }
-            }))
-        }
         
         present(alert, animated: true, completion: nil)
     }
@@ -200,8 +176,7 @@ extension CommonBasesTableViewController : GADBannerViewDelegate {
 
 extension CommonBasesTableViewController : GADInterstitialDelegate {
     private func createAndLoadInterstitial() -> GADInterstitial? {
-        let adUnitID = debug ? interstialAdsUnitIDTrial : interstialAdsUnitID
-        interstitial = GADInterstitial(adUnitID: adUnitID)
+        interstitial = GADInterstitial(adUnitID: interstialAdsUnitID)
         
         guard let interstitial = interstitial else {
             return nil
@@ -219,7 +194,7 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
         guard let bannerView = bannerView else {
             return nil
         }
-        bannerView.adUnitID = debug ? bannerAdsUnitIDTrial : bannerAdsUnitID
+        bannerView.adUnitID = bannerAdsUnitID
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
@@ -236,17 +211,6 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
     }
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        //ad.present(fromRootViewController: self)
+        ad.present(fromRootViewController: self)
     }
-    
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        presentAlert(title: NSLocalizedString("Appname", comment: ""), message: NSLocalizedString("UpgradeMessage", comment: ""), isUpgradeMessage: true)
-    }
-}
-
-
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
