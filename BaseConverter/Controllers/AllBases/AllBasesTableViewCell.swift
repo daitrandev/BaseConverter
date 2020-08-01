@@ -34,9 +34,6 @@ class AllBasesTableViewCell: CommonBasesTableViewCell {
 
             allowingCharacters.append(string)
         }
-        
-        baseTextField.backgroundColor = isFreeVersion ? .gray : .white
-        baseTextField.isUserInteractionEnabled = !isFreeVersion
     }
     
     required init?(coder aDecoder: NSCoder) {

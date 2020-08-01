@@ -29,35 +29,21 @@ class CommonBasesTableViewController: UIViewController {
         return tableView
     }()
         
-    var bannerView: GADBannerView?
+    private var bannerView: GADBannerView?
     
-    var interstitial: GADInterstitial?
-
-    var isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
-    
-    var isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool ?? true
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return isLightTheme ? .default : .lightContent
-    }
+    private var interstitial: GADInterstitial?
     
     override func viewDidLoad() {
         view.addSubview(tableView)
         
         setupAds()
         setupTableView()
+        setupColor()
         
+        tabBarController?.tabBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshButtonAction))
         self.title = NSLocalizedString("CommonBases", comment: "")
-        
-        if UserDefaults.standard.object(forKey: isLightThemeKey) == nil {
-            UserDefaults.standard.set(true, forKey: isLightThemeKey)
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadThemeAndUpdateFormat()
     }
     
     @objc func refreshButtonAction() {
@@ -75,6 +61,20 @@ class CommonBasesTableViewController: UIViewController {
         tableView.constraintTo(top: view.layoutMarginsGuide.topAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, topConstant: 0, bottomConstant: 0, leftConstant: 0, rightConstant: 0)
     }
     
+    private func setupColor() {
+        if #available(iOS 13, *) {
+            tabBarController?.tabBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+            tabBarController?.tabBar.barTintColor = .secondarySystemBackground
+            navigationController?.navigationBar.barTintColor = .secondarySystemBackground
+            navigationController?.navigationBar.tintColor = traitCollection.userInterfaceStyle.themeColor
+        } else {
+            tabBarController?.tabBar.tintColor = .deepBlue
+            tabBarController?.tabBar.barTintColor = .white
+            navigationController?.navigationBar.barTintColor = .white
+            navigationController?.navigationBar.tintColor = .deepBlue
+        }
+    }
+    
     private func setupAds() {
         bannerView = createAndLoadBannerView()
         interstitial = createAndLoadInterstitial()
@@ -89,29 +89,9 @@ class CommonBasesTableViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func loadThemeAndUpdateFormat() {
-        isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
-        
-        self.tableView.backgroundColor = isLightTheme ? UIColor.white : UIColor.black
-        
-        navigationController?.navigationBar.barTintColor = isLightTheme ? UIColor.white : UIColor.black
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: isLightTheme ? UIColor.black : UIColor.white]
-        navigationController?.navigationBar.tintColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
-        
-        tabBarController?.tabBar.tintColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
-        tabBarController?.tabBar.barTintColor = isLightTheme ? UIColor.white : UIColor.black
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
-        view.backgroundColor = isLightTheme ? UIColor.white : UIColor.black
-        
-        guard let visibleCells = tableView.visibleCells as? [CommonBasesTableViewCell] else { return }
-        for i in 0..<visibleCells.count {
-            visibleCells[i].backgroundColor = view.backgroundColor
-            visibleCells[i].updateColor()
-            let tag = visibleCells[i].tag
-            visibleCells[i].base = bases[tag]
-        }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupColor()
     }
 }
 
@@ -124,7 +104,6 @@ extension CommonBasesTableViewController: UITableViewDataSource, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBasesTableViewCell
         cell.base = bases[indexPath.row]
         cell.tag = indexPath.row
-        cell.updateColor()
         cell.delegate = self
         return cell
     }

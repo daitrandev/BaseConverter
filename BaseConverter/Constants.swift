@@ -8,7 +8,6 @@
 
 import UIKit
 
-let isLightThemeKey: String = "isLightTheme"
 let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 #if DEBUG

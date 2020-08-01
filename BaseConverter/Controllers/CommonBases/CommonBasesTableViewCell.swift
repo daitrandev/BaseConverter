@@ -20,16 +20,11 @@ class CommonBasesTableViewCell: UITableViewCell {
     var baseNums = [2, 8, 10, 16]
     
     var baseTexts = ["BIN", "OCT", "DEC", "HEX"]
-    
-    let isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool ?? true
         
     weak var delegate: CommonTableViewCellDelegate?
     
     var base: Base? {
         didSet {
-            let isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
-            self.backgroundColor = isLightTheme ? UIColor.white : UIColor.black
-            
             guard let base = base else { return }
             
             baseLabel.text      = base.baseLabelText
@@ -42,41 +37,26 @@ class CommonBasesTableViewCell: UITableViewCell {
             let attributedPlaceHolder = NSMutableAttributedString()
             attributedPlaceHolder.append(NSAttributedString(string: baseString + " \(baseNum)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
             baseTextField.attributedPlaceholder = attributedPlaceHolder
-
-//            guard let baseTextFieldText = base.baseTextFieldText else { return }
-//            if baseTextFieldText.contains(Character(".")) || baseTextFieldText.contains(Character(",")) {
-//                let decimalPlaces = UserDefaults.standard.integer(forKey: decimalPlaceKey)
-//                let lhs = baseTextFieldText.components(separatedBy: CharacterSet.init(charactersIn: ".,"))[0]
-//                let rhs = baseTextFieldText.components(separatedBy: CharacterSet.init(charactersIn: ".,"))[1]
-//                var endIndex = baseTextFieldText.index(rhs.startIndex, offsetBy: decimalPlaces, limitedBy: rhs.endIndex)
-//                if endIndex == nil {
-//                    endIndex = rhs.endIndex
-//                }
-//                let seperateCharacter = baseTextFieldText.contains(Character(".")) ? "." : ","
-//                baseTextField.text = lhs + seperateCharacter + rhs[..<endIndex!]
-//            }
         }
     }
     
-    let baseLabel: UILabel = {
+    private let baseLabel: UILabel = {
         let label = UILabel()
         label.text = "Base"
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.layer.cornerRadius = 5
         label.layer.masksToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var baseTextField: UITextField = {
+    private lazy var baseTextField: UITextField = {
         let textField = UITextField()
         textField.layer.borderWidth = 2
-        textField.layer.cornerRadius = 5
+        textField.layer.cornerRadius = 10
         textField.textAlignment = .center
         textField.layer.masksToBounds = true
         textField.backgroundColor = .white
-        textField.layer.borderColor = UserDefaults.standard.bool(forKey: isLightThemeKey) ? UIColor.deepBlue.cgColor : UIColor.orange.cgColor
         textField.returnKeyType = .done
         textField.delegate = self
         textField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
@@ -84,11 +64,11 @@ class CommonBasesTableViewCell: UITableViewCell {
         return textField
     }()
     
-    lazy var copyButton: UIButton = {
+    private lazy var copyButton: UIButton = {
         let button = UIButton(type: UIButton.ButtonType.custom)
-        let buttonImage = UserDefaults.standard.bool(forKey: isLightThemeKey) ? UIImage(named: "copy-blue") : UIImage(named: "copy-orange")
+        let buttonImage = UIImage(named: "copy")
         button.setImage(buttonImage, for: .normal)
-        button.addTarget(self, action: #selector(onCopyAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapCopy), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -145,31 +125,43 @@ class CommonBasesTableViewCell: UITableViewCell {
     }
     
     func setupViews() {
-        let isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
-        self.backgroundColor = isLightTheme ? UIColor.white : UIColor.black
+        setupColor()
         
         addSubview(baseLabel)
         addSubview(baseTextField)
         
-        baseLabel.constraintTo(top: topAnchor, bottom: nil, left: contentView.leftAnchor, right: nil, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
+        baseLabel.constraintTo(
+            top: topAnchor,
+            bottom: nil,
+            left: contentView.leftAnchor,
+            right: nil,
+            topConstant: 8,
+            bottomConstant: -8,
+            leftConstant: 8,
+            rightConstant: -8
+        )
         baseLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
-        guard let isFreeVersion = Bundle.main.infoDictionary?["isFreeVersion"] as? Bool else { return }
-        if isFreeVersion {
-            baseTextField.constraintTo(top: baseLabel.bottomAnchor, bottom: contentView.bottomAnchor, left: contentView.leftAnchor, right: contentView.rightAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
-        } else {
-            addSubview(copyButton)
-
-            baseTextField.constraintTo(top: baseLabel.bottomAnchor, bottom: contentView.bottomAnchor, left: contentView.leftAnchor, right: copyButton.leftAnchor, topConstant: 8, bottomConstant: -8, leftConstant: 8, rightConstant: -8)
-
-            copyButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8).isActive = true
-            copyButton.centerYAnchor.constraint(equalTo: baseTextField.centerYAnchor).isActive = true
-            copyButton.widthAnchor.constraint(equalTo: copyButton.heightAnchor).isActive = true
-            copyButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        }
+        addSubview(copyButton)
+        
+        baseTextField.constraintTo(
+            top: baseLabel.bottomAnchor,
+            bottom: contentView.bottomAnchor,
+            left: contentView.leftAnchor,
+            right: copyButton.leftAnchor,
+            topConstant: 8,
+            bottomConstant: -8,
+            leftConstant: 8,
+            rightConstant: -8
+        )
+        
+        copyButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8).isActive = true
+        copyButton.centerYAnchor.constraint(equalTo: baseTextField.centerYAnchor).isActive = true
+        copyButton.widthAnchor.constraint(equalTo: copyButton.heightAnchor).isActive = true
+        copyButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
     }
     
-    @objc func onCopyAction() {
+    @objc func didTapCopy() {
         if baseTextField.text != "" {
             UIPasteboard.general.string = baseTextField.text!
             delegate?.presentCopiedAlert(message: NSLocalizedString("Copied", comment: ""))
@@ -178,12 +170,21 @@ class CommonBasesTableViewCell: UITableViewCell {
         }
     }
     
-    func updateColor() {
-        let isLightTheme = UserDefaults.standard.bool(forKey: isLightThemeKey)
-        baseLabel.textColor = isLightTheme ? UIColor.deepBlue : UIColor.orange
-        baseTextField.layer.borderColor = isLightTheme ? UIColor.deepBlue.cgColor : UIColor.orange.cgColor
-        let copyImage = isLightTheme ? UIImage(named: "copy-blue") : UIImage(named: "copy-orange")
-        copyButton.setImage(copyImage, for: .normal)
+    private func setupColor() {
+        if #available(iOS 13, *) {
+            baseLabel.textColor = traitCollection.userInterfaceStyle.themeColor
+            baseTextField.layer.borderColor = traitCollection.userInterfaceStyle.themeColor.cgColor
+            copyButton.imageView?.set(color: traitCollection.userInterfaceStyle.themeColor)
+        } else {
+            baseLabel.textColor = .deepBlue
+            baseTextField.layer.borderColor = UIColor.deepBlue.cgColor
+            copyButton.imageView?.set(color: .deepBlue)
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupColor()
     }
 }
 

@@ -40,7 +40,6 @@ class AllBasesTableViewController: CommonBasesTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AllBasesTableViewCell
         cell.base = bases[indexPath.row]
         cell.tag = indexPath.row
-        cell.updateColor()
         cell.delegate = self
         return cell
     }

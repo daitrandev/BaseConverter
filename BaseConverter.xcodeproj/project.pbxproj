@@ -21,6 +21,8 @@
 		23ADE6B220906AA4005FDC04 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23ADE6B120906AA4005FDC04 /* Constants.swift */; };
 		23E6060B208C0EAE007C5710 /* CommonBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060A208C0EAE007C5710 /* CommonBasesTableViewCell.swift */; };
 		23E6060D208C3198007C5710 /* AllBasesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6060C208C3198007C5710 /* AllBasesTableViewCell.swift */; };
+		F83CDEF024C880E70090B623 /* UITraitCollection+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83CDEEF24C880E70090B623 /* UITraitCollection+Utils.swift */; };
+		F8408F2824D54B2200A39C8C /* UIImageview+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8408F2724D54B2200A39C8C /* UIImageview+Utils.swift */; };
 		FA15238B2220ED6D00784B11 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15238A2220ED6D00784B11 /* Menu.swift */; };
 		FA1523942220EE9A00784B11 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1523932220EE9A00784B11 /* Theme.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +69,8 @@
 		23E6060A208C0EAE007C5710 /* CommonBasesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBasesTableViewCell.swift; sourceTree = "<group>"; };
 		23E6060C208C3198007C5710 /* AllBasesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBasesTableViewCell.swift; sourceTree = "<group>"; };
 		23FBEF07209575A900030140 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		F83CDEEF24C880E70090B623 /* UITraitCollection+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Utils.swift"; sourceTree = "<group>"; };
+		F8408F2724D54B2200A39C8C /* UIImageview+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageview+Utils.swift"; sourceTree = "<group>"; };
 		FA15238A2220ED6D00784B11 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		FA1523932220EE9A00784B11 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +107,7 @@
 		230E7F71208A2F2B0081F401 /* BaseConverter */ = {
 			isa = PBXGroup;
 			children = (
+				F83CDEEC24C8806B0090B623 /* Utils */,
 				230E7F7E208A2F2C0081F401 /* Info.plist */,
 				230E7F72208A2F2B0081F401 /* AppDelegate.swift */,
 				23ADE6B120906AA4005FDC04 /* Constants.swift */,
@@ -132,6 +137,31 @@
 			children = (
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F83CDEEC24C8806B0090B623 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F83CDEEE24C880770090B623 /* NonUI */,
+				F83CDEED24C880700090B623 /* UI */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F83CDEED24C880700090B623 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F83CDEEF24C880E70090B623 /* UITraitCollection+Utils.swift */,
+				F8408F2724D54B2200A39C8C /* UIImageview+Utils.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F83CDEEE24C880770090B623 /* NonUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NonUI;
 			sourceTree = "<group>";
 		};
 		FA1523852220ECF800784B11 /* CommonBases */ = {
@@ -260,10 +290,12 @@
 				230E7F89208A3D5E0081F401 /* Base.swift in Sources */,
 				230E7F75208A2F2B0081F401 /* CommonBasesTableViewController.swift in Sources */,
 				230E7F8B208A41250081F401 /* MainTabBarController.swift in Sources */,
+				F8408F2824D54B2200A39C8C /* UIImageview+Utils.swift in Sources */,
 				23E6060B208C0EAE007C5710 /* CommonBasesTableViewCell.swift in Sources */,
 				23ADE6B220906AA4005FDC04 /* Constants.swift in Sources */,
 				FA15238B2220ED6D00784B11 /* Menu.swift in Sources */,
 				230E7F87208A39EC0081F401 /* Extensions.swift in Sources */,
+				F83CDEF024C880E70090B623 /* UITraitCollection+Utils.swift in Sources */,
 				237BC733208DC04A00F30C3E /* Utilities.swift in Sources */,
 				230E7F8D208A42950081F401 /* AllBasesTableViewController.swift in Sources */,
 				230E7F73208A2F2B0081F401 /* AppDelegate.swift in Sources */,
