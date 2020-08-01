@@ -33,7 +33,7 @@ class CommonBasesTableViewCell: UITableViewCell {
             baseTextField.keyboardType = baseNums[baseTextField.tag] < 11 ? .decimalPad : .numbersAndPunctuation
             
             let baseNum = baseNums[baseTextField.tag]
-            let baseString = NSLocalizedString("Base", comment: "")
+            let baseString = "Base"
             let attributedPlaceHolder = NSMutableAttributedString()
             attributedPlaceHolder.append(NSAttributedString(string: baseString + " \(baseNum)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]))
             baseTextField.attributedPlaceholder = attributedPlaceHolder
@@ -164,9 +164,9 @@ class CommonBasesTableViewCell: UITableViewCell {
     @objc func didTapCopy() {
         if baseTextField.text != "" {
             UIPasteboard.general.string = baseTextField.text!
-            delegate?.presentCopiedAlert(message: NSLocalizedString("Copied", comment: ""))
+            delegate?.presentCopiedAlert(message: "Copied")
         } else {
-            delegate?.presentCopiedAlert(message: NSLocalizedString("Nothing to copy", comment: ""))
+            delegate?.presentCopiedAlert(message: "Nothing to copy")
         }
     }
     

@@ -20,7 +20,7 @@ class AllBasesTableViewCell: CommonBasesTableViewCell {
         allowingCharacters.removeAll()
 
         var string = "0"
-        let baseString = NSLocalizedString("Base", comment: "")
+        let baseString = "Base"
         for i in 2...36 {
             let baseText = baseString + " \(i)"
             baseTexts.append(baseText)

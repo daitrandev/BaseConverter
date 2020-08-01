@@ -15,12 +15,12 @@ class MainTabBarController: UITabBarController {
         
         let commonBasesTableViewController = CommonBasesTableViewController()
         let commonBasesTableViewControllerNav = UINavigationController(rootViewController: commonBasesTableViewController)
-        commonBasesTableViewControllerNav.tabBarItem.title = NSLocalizedString("CommonBases", comment: "")
+        commonBasesTableViewControllerNav.tabBarItem.title = "Common Bases"
         commonBasesTableViewControllerNav.tabBarItem.image = #imageLiteral(resourceName: "common-list")
         
         let allBasesTableViewController = AllBasesTableViewController()
         let allBasesTableViewControllerNav = UINavigationController(rootViewController: allBasesTableViewController)
-        allBasesTableViewControllerNav.tabBarItem.title = NSLocalizedString("AllBases", comment: "")
+        allBasesTableViewControllerNav.tabBarItem.title = "All Bases"
         allBasesTableViewControllerNav.tabBarItem.image = #imageLiteral(resourceName: "all-list")
         
         viewControllers = [commonBasesTableViewControllerNav, allBasesTableViewControllerNav]

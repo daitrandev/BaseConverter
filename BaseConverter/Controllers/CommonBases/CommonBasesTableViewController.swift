@@ -43,7 +43,7 @@ class CommonBasesTableViewController: UIViewController {
         tabBarController?.tabBar.isTranslucent = false
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshButtonAction))
-        self.title = NSLocalizedString("CommonBases", comment: "")
+        self.title = "Common Bases"
     }
     
     @objc func refreshButtonAction() {
@@ -82,7 +82,7 @@ class CommonBasesTableViewController: UIViewController {
     
     func presentAlert(title: String, message: String, isUpgradeMessage: Bool) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Done", comment: ""), style: .cancel, handler: {(action) in
+        alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: {(action) in
             self.setNeedsStatusBarAppearanceUpdate()
         }))
         
@@ -182,11 +182,11 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
     }
     
     func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-        presentAlert(title: NSLocalizedString("Appname", comment: ""), message: NSLocalizedString("UpgradeMessage", comment: ""), isUpgradeMessage: true)
+        
     }
     
     func interstitialDidFail(toPresentScreen ad: GADInterstitial) {
-        presentAlert(title: NSLocalizedString("Appname", comment: ""), message: NSLocalizedString("UpgradeMessage", comment: ""), isUpgradeMessage: true)
+        
     }
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {

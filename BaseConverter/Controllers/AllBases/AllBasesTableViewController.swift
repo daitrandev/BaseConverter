@@ -18,7 +18,7 @@ class AllBasesTableViewController: CommonBasesTableViewController {
         setupTableView()
         
         bases.removeAll()
-        let baseString = NSLocalizedString("Base", comment: "")
+        let baseString = "Base"
         for i in 2...36 {
             let base = Base(baseLabelText: baseString + " \(i)", baseTextFieldTag: i - 2, baseTextFieldText: nil)
             bases.append(base)
@@ -29,7 +29,7 @@ class AllBasesTableViewController: CommonBasesTableViewController {
     override func setupTableView() {
         super.setupTableView()
         tableView.register(AllBasesTableViewCell.self, forCellReuseIdentifier: cellId)
-        self.title = NSLocalizedString("AllBases", comment: "")
+        self.title = "All Bases"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
