@@ -1,5 +1,5 @@
 //
-//  Utilities.swift
+//  BaseConverter.swift
 //  BaseConverter
 //
 //  Created by Dai Tran on 4/23/18.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-class Utilities {
-    
+class BaseConverter {
     static func convertFloatingNumToBase10(floating num: String?, from baseNum: Int) -> String? {
         
         guard let num = num else { return nil }

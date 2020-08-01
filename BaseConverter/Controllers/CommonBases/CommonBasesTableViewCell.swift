@@ -90,7 +90,7 @@ class CommonBasesTableViewCell: UITableViewCell {
             hasComma = true
         }
         
-        let base10FloatingPoint = !isValidFloatingPoint ? nil : Utilities.convertFloatingNumToBase10(floating: textField.text, from: baseNums[textField.tag])
+        let base10FloatingPoint = !isValidFloatingPoint ? nil : BaseConverter.convertFloatingNumToBase10(floating: textField.text, from: baseNums[textField.tag])
         
         var bases: [Base] = []
         for i in 0..<baseNums.count {
@@ -104,7 +104,7 @@ class CommonBasesTableViewCell: UITableViewCell {
             if let base10 = base10 {
                 baseTextFieldText = String(base10, radix: baseNums[i]).uppercased()
             } else {
-                baseTextFieldText = Utilities.convertFromBase10FloatingPoint(floating: base10FloatingPoint, to: baseNums[i], hasComma: hasComma)
+                baseTextFieldText = BaseConverter.convertFromBase10FloatingPoint(floating: base10FloatingPoint, to: baseNums[i], hasComma: hasComma)
             }
             
             let base = Base(baseLabelText: "\(baseTexts[i])", baseTextFieldTag: i, baseTextFieldText: baseTextFieldText)
