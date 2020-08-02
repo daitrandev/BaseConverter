@@ -12,6 +12,7 @@ protocol AllBasesViewModelDelegate: class {
 
 protocol AllBasesViewModelType: class {
     var cellLayoutItems: [AllBasesViewModel.CellLayoutItem] { get }
+    var isPurchased: Bool { get }
     var delegate: AllBasesViewModelDelegate? { get set }
     func didChange(value: String, from base: Int)
 }
@@ -26,6 +27,10 @@ class AllBasesViewModel: AllBasesViewModelType {
     private let minimumBase: Int = 2
     private let maximumBase: Int = 36
     private let numAndAlphabet: String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    
+    var isPurchased: Bool {
+        GlobalKeychain.getBool(for: KeychainKey.isPurchased) ?? false
+    }
     
     var cellLayoutItems: [AllBasesViewModel.CellLayoutItem] {
         didSet {
@@ -58,11 +63,6 @@ class AllBasesViewModel: AllBasesViewModelType {
     }
     
     func didChange(value: String, from baseValue: Int) {
-        if value.last == "." || value.last == "," {
-            clear(exclusive: baseValue)
-            return
-        }
-        
         let floatingPointCharacter = FloatingPointCharacter.init(string: value)
         
         var cellLayoutItems = self.cellLayoutItems
@@ -84,7 +84,7 @@ class AllBasesViewModel: AllBasesViewModelType {
                     cellLayoutItems[index].content = ""
                     continue
                 }
-                content = base10FloatingPoint
+                content = BaseConverter.convertFromBase10FloatingPoint(floating: base10FloatingPoint, to: cellLayoutItems[index].baseValue) ?? ""
             }
             
             cellLayoutItems[index].content = content

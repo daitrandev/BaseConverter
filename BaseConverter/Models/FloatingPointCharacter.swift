@@ -14,6 +14,7 @@ enum FloatingPointCharacter: String, CaseIterable {
         for floatingPointChar in Self.allCases {
             if string.contains(floatingPointChar.rawValue) {
                 self = floatingPointChar
+                return
             }
         }
         return nil

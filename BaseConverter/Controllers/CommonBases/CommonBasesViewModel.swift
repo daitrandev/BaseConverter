@@ -13,6 +13,7 @@ protocol CommonBasesViewModelDelegate: class {
 protocol CommonBasesViewModelType: class {
     var cellLayoutItems: [CommonBasesViewModel.CellLayoutItem] { get }
     var delegate: CommonBasesViewModelDelegate? { get set }
+    var isPurchased: Bool { get }
     func clear(exclusive baseValue: Int?)
     func didChange(value: String, from baseValue: Int)
 }
@@ -27,6 +28,10 @@ class CommonBasesViewModel: CommonBasesViewModelType {
         didSet {
             delegate?.reloadTableView()
         }
+    }
+    
+    var isPurchased: Bool {
+        GlobalKeychain.getBool(for: KeychainKey.isPurchased) ?? false
     }
     
     weak var delegate: CommonBasesViewModelDelegate?
@@ -64,11 +69,6 @@ class CommonBasesViewModel: CommonBasesViewModelType {
     }
     
     func didChange(value: String, from baseValue: Int) {
-        if value.last == "." || value.last == "," {
-            clear(exclusive: baseValue)
-            return
-        }
-        
         let floatingPointCharacter = FloatingPointCharacter.init(string: value)
         
         var cellLayoutItems = self.cellLayoutItems
@@ -90,7 +90,7 @@ class CommonBasesViewModel: CommonBasesViewModelType {
                     cellLayoutItems[index].content = ""
                     continue
                 }
-                content = base10FloatingPoint
+                content = BaseConverter.convertFromBase10FloatingPoint(floating: base10FloatingPoint, to: cellLayoutItems[index].base.rawValue) ?? ""
             }
             
             cellLayoutItems[index].content = content

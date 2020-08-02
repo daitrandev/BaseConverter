@@ -65,7 +65,7 @@ class BaseConverter {
         guard let lhsNum = Int(lhs),
             var rhsNum = Double("0." + rhs) else { return nil }
         
-        let floatingPointChar = FloatingPointCharacter(rawValue: num)?.rawValue ?? ""
+        let floatingPointChar = FloatingPointCharacter(string: num)?.rawValue ?? ""
         var baseStr = String(lhsNum, radix: baseNum).uppercased() + floatingPointChar
         
         var decimalPlaces = 20

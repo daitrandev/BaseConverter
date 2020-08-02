@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMobileAds
 import IQKeyboardManagerSwift
+import SwiftyStoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,7 +26,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-                
+        
+        if let isPurchased = GlobalKeychain.getBool(for: KeychainKey.isPurchased), isPurchased {
+            return true
+        }
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                    // Unlock content
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                }
+            }
+        }
+        
         return true
     }
 

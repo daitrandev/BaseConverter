@@ -43,6 +43,11 @@ class CommonBasesTableViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupAdsViews()
+    }
+    
     override func viewDidLoad() {
         view.addSubview(tableView)
         
@@ -53,13 +58,19 @@ class CommonBasesTableViewController: UIViewController {
         
         tabBarController?.tabBar.isTranslucent = false
         navigationController?.navigationBar.isTranslucent = false
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "refresh"),
             style: .plain,
             target: self,
             action: #selector(didTapClear)
         )
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "unlock"),
+            style: .plain,
+            target: self,
+            action: #selector(didTapUnlock)
+        )
         
         title = "Common Bases"
     }
@@ -75,6 +86,26 @@ class CommonBasesTableViewController: UIViewController {
             left: view.leftAnchor,
             right: view.rightAnchor
         )
+    }
+    
+    private func setupAdsViews() {
+        if viewModel.isPurchased {
+            removeAds()
+            return
+        }
+        
+        if bannerView == nil && interstitial == nil {
+            bannerView = createAndLoadBannerView()
+            interstitial = createAndLoadInterstitial()
+        }
+    }
+    
+    @objc private func didTapUnlock() {
+        tabBarController?.tabBar.layer.zPosition = -1
+        
+        let vc = PurchasingPopupViewController()
+        vc.delegate = self
+        present(vc, animated: true)
     }
     
     private func setupColor() {
@@ -103,6 +134,20 @@ class CommonBasesTableViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         setupColor()
+    }
+}
+
+extension CommonBasesTableViewController: PurchasingPopupViewControllerDelegate {
+    func removeAds() {
+        showTabbar()
+        
+        bannerView?.removeFromSuperview()
+        tableView.tableHeaderView = nil
+        navigationItem.leftBarButtonItem = nil
+    }
+    
+    func showTabbar() {
+        tabBarController?.tabBar.layer.zPosition = 0
     }
 }
 
@@ -170,12 +215,7 @@ extension CommonBasesTableViewController : GADBannerViewDelegate {
 
 extension CommonBasesTableViewController : GADInterstitialDelegate {
     private func createAndLoadInterstitial() -> GADInterstitial? {
-        interstitial = GADInterstitial(adUnitID: interstialAdsUnitID)
-        
-        guard let interstitial = interstitial else {
-            return nil
-        }
-        
+        let interstitial = GADInterstitial(adUnitID: interstialAdsUnitID)
         let request = GADRequest()
         interstitial.load(request)
         interstitial.delegate = self
@@ -184,24 +224,13 @@ extension CommonBasesTableViewController : GADInterstitialDelegate {
     }
     
     private func createAndLoadBannerView() -> GADBannerView? {
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        guard let bannerView = bannerView else {
-            return nil
-        }
+        let bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.adUnitID = bannerAdsUnitID
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
         
         return bannerView
-    }
-    
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-        
-    }
-    
-    func interstitialDidFail(toPresentScreen ad: GADInterstitial) {
-        
     }
     
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
