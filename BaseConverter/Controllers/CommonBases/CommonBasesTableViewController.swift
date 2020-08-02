@@ -46,11 +46,13 @@ class CommonBasesTableViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupAdsViews()
+        
+        // Enable cell after purchasing if needed
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         view.addSubview(tableView)
-        
         setupTableView()
         setupColor()
         

@@ -113,10 +113,16 @@ class CommonBasesTableViewCell: UITableViewCell {
         allowingCharacters = item.allowingCharacters
         
         if item.baseValue <= 10 {
+            baseTextField.isEnabled = true
+            baseTextField.backgroundColor = .white
             baseTextField.keyboardType = .decimalPad
-        } else {
-            baseTextField.keyboardType = .numbersAndPunctuation
+            return
         }
+        
+        let isPurchased = GlobalKeychain.getBool(for: KeychainKey.isPurchased) ?? false
+        
+        baseTextField.backgroundColor = isPurchased ? .white : .gray
+        baseTextField.isEnabled = isPurchased
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
