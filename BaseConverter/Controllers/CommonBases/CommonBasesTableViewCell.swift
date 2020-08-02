@@ -21,12 +21,19 @@ class CommonBasesTableViewCell: UITableViewCell {
     private var baseValue: Int?
     private var allowingCharacters: String?
     
+    private var placeholderColor: UIColor {
+        if #available(iOS 13, *) {
+            return .systemGray
+        }
+        
+        return .gray
+    }
+    
     weak var delegate: CommonTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupColor()
-        
         baseTextField.delegate = self
     }
     
@@ -40,6 +47,9 @@ class CommonBasesTableViewCell: UITableViewCell {
             baseTextField.layer.borderColor = UIColor.deepBlue.cgColor
             copyButton.imageView?.set(color: .deepBlue)
         }
+        
+        baseTextField.textColor = .black
+        baseTextField.backgroundColor = .white
     }
     
     @IBAction func textFieldEditingChanged() {
@@ -55,12 +65,8 @@ class CommonBasesTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapCopy() {
-        if baseTextField.text != "" {
-            UIPasteboard.general.string = baseTextField.text!
-            delegate?.presentCopiedAlert(message: "Copied")
-        } else {
-            delegate?.presentCopiedAlert(message: "Nothing to copy")
-        }
+        UIPasteboard.general.string = baseTextField.text!
+        delegate?.presentCopiedAlert(message: "Copied")
     }
     
     func configure(with item: CommonBasesViewModel.CellLayoutItem) {
@@ -71,7 +77,10 @@ class CommonBasesTableViewCell: UITableViewCell {
         attributedPlaceHolder.append(
             NSAttributedString(
                 string: "Base \(item.base.rawValue)",
-                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+                attributes: [
+                    NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 14) as Any,
+                    NSAttributedString.Key.foregroundColor: placeholderColor
+                ]
             )
         )
         baseTextField.attributedPlaceholder = attributedPlaceHolder
@@ -87,7 +96,10 @@ class CommonBasesTableViewCell: UITableViewCell {
         attributedPlaceHolder.append(
             NSAttributedString(
                 string: "Base \(item.baseValue)",
-                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+                attributes: [
+                    NSAttributedString.Key.font: UIFont(name: "Roboto-Regular", size: 14) as Any,
+                    NSAttributedString.Key.foregroundColor: placeholderColor
+                ]
             )
         )
         baseTextField.attributedPlaceholder = attributedPlaceHolder

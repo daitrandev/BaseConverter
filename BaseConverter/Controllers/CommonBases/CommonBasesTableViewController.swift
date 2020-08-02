@@ -53,16 +53,28 @@ class CommonBasesTableViewController: UIViewController {
         
         tabBarController?.tabBar.isTranslucent = false
         navigationController?.navigationBar.isTranslucent = false
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "refresh"), style: .plain, target: self, action: #selector(refreshButtonAction))
-        self.title = "Common Bases"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "refresh"),
+            style: .plain,
+            target: self,
+            action: #selector(didTapClear)
+        )
+        
+        
+        title = "Common Bases"
     }
     
-    @objc func refreshButtonAction() {
+    @objc func didTapClear() {
         viewModel.clear(exclusive: nil)
     }
     
-    func setupTableView() {
-        tableView.constraintTo(top: view.layoutMarginsGuide.topAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor)
+    private func setupTableView() {
+        tableView.constraintTo(
+            top: view.layoutMarginsGuide.topAnchor,
+            bottom: view.layoutMarginsGuide.bottomAnchor,
+            left: view.leftAnchor,
+            right: view.rightAnchor
+        )
     }
     
     private func setupColor() {
@@ -115,6 +127,14 @@ extension CommonBasesTableViewController: UITableViewDataSource, UITableViewDele
         cell.delegate = self
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }
 
 extension CommonBasesTableViewController: CommonTableViewCellDelegate {
@@ -123,7 +143,7 @@ extension CommonBasesTableViewController: CommonTableViewCellDelegate {
     }
     
     func presentCopiedAlert(message: String) {
-        self.presentAlert(title: message, message: "")
+        self.presentAlert(title: "Success", message: message)
     }
 }
 

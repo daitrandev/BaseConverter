@@ -25,7 +25,7 @@ class AllBasesTableViewController: CommonBasesTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-        self.title = "All Bases"
+        title = "All Bases"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
