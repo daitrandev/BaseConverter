@@ -9,22 +9,18 @@
 import UIKit
 
 class BaseConverter {
-    static func convertFloatingNumToBase10(floating num: String?, from baseNum: Int) -> String? {
-        
-        guard let num = num else { return nil }
-        
+    static func convertFloatingNumToBase10(floating num: String, from baseNum: Int) -> String? {
         let calculateOperand: ((Character, Int) -> Double?) = { (numChar, exponent) in
-            var num: Double? = Double(String(numChar))
-            
-            if num == nil {
+            let num: Double
+            if let number = Double(String(numChar)) {
+                num = number
+            } else {
                 guard let asciiValue = numChar.asciiValue else { return nil }
                 num = Double(asciiValue - 55)
             }
+            
             let baseExponent = pow(Double(baseNum), Double(exponent))
-            if let num = num {
-                return num * baseExponent
-            }
-            return nil
+            return num * baseExponent
         }
         
         var base10Str = ""
@@ -58,22 +54,19 @@ class BaseConverter {
         return base10Str
     }
     
-    static func convertFromBase10FloatingPoint(floating num: String?, to baseNum: Int, hasComma: Bool) -> String? {
-        guard let num = num else {
-            return nil
-        }
-        
+    static func convertFromBase10FloatingPoint(
+        floating num: String,
+        to baseNum: Int) -> String? {
         
         let charSet = CharacterSet(charactersIn: ".,")
         let lhs = num.components(separatedBy: charSet)[0]
         let rhs = num.components(separatedBy: charSet)[1]
         
-        guard let lhsNum = Int(lhs) else { return nil }
+        guard let lhsNum = Int(lhs),
+            var rhsNum = Double("0." + rhs) else { return nil }
         
-        let seperateCharacter = hasComma ? "," : "."
-        guard var rhsNum = Double("0." + rhs) else { return nil }
-        
-        var baseStr = String(lhsNum, radix: baseNum).uppercased() + seperateCharacter
+        let floatingPointChar = FloatingPointCharacter(rawValue: num)?.rawValue ?? ""
+        var baseStr = String(lhsNum, radix: baseNum).uppercased() + floatingPointChar
         
         var decimalPlaces = 20
         

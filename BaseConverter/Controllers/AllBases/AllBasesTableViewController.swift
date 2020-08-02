@@ -9,38 +9,47 @@
 import UIKit
 
 class AllBasesTableViewController: CommonBasesTableViewController {
+    private let viewModel: AllBasesViewModelType
     
     let numAndAlphabet: String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupTableView()
-        
-        bases.removeAll()
-        let baseString = "Base"
-        for i in 2...36 {
-            let base = Base(baseLabelText: baseString + " \(i)", baseTextFieldTag: i - 2, baseTextFieldText: nil)
-            bases.append(base)
-        }
-        
+    override init() {
+        viewModel = AllBasesViewModel()
+        super.init()
     }
     
-    override func setupTableView() {
-        super.setupTableView()
-        tableView.register(AllBasesTableViewCell.self, forCellReuseIdentifier: cellId)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.delegate = self
         self.title = "All Bases"
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bases.count
+        viewModel.cellLayoutItems.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AllBasesTableViewCell
-        cell.base = bases[indexPath.row]
-        cell.tag = indexPath.row
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBasesTableViewCell
+        cell.configure(with: viewModel.cellLayoutItems[indexPath.row])
         cell.delegate = self
         return cell
     }
+    
+    override func reloadTableView() {
+        for cell in tableView.visibleCells {
+            guard let indexPath = tableView.indexPath(for: cell) else { continue }
+            let cell = cell as? CommonBasesTableViewCell
+            cell?.configure(with: viewModel.cellLayoutItems[indexPath.row])
+        }
+    }
+    
+    override func didChange(value: String, from baseValue: Int) {
+        viewModel.didChange(value: value, from: baseValue)
+    }
 }
+
+extension AllBasesTableViewController: AllBasesViewModelDelegate { }

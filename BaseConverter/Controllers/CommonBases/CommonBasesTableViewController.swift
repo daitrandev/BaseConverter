@@ -13,32 +13,43 @@ class CommonBasesTableViewController: UIViewController {
 
     let cellId = "cellId"
     
-    var bases = [Base(baseLabelText: "BIN", baseTextFieldTag: 0, baseTextFieldText: nil),
-                 Base(baseLabelText: "OCT", baseTextFieldTag: 1, baseTextFieldText: nil),
-                 Base(baseLabelText: "DEC", baseTextFieldTag: 2, baseTextFieldText: nil),
-                 Base(baseLabelText: "HEX", baseTextFieldTag: 3, baseTextFieldText: nil)]
-    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
-        tableView.register(CommonBasesTableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(
+            UINib(
+                nibName: String(describing: CommonBasesTableViewCell.self),
+                bundle: .main
+            ),
+            forCellReuseIdentifier: cellId
+        )
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-        
-    private var bannerView: GADBannerView?
     
+    private let viewModel: CommonBasesViewModelType
+    private var bannerView: GADBannerView?
     private var interstitial: GADInterstitial?
+    
+    init() {
+        viewModel = CommonBasesViewModel()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         view.addSubview(tableView)
         
-        setupAds()
         setupTableView()
         setupColor()
+        
+        viewModel.delegate = self
         
         tabBarController?.tabBar.isTranslucent = false
         navigationController?.navigationBar.isTranslucent = false
@@ -47,18 +58,11 @@ class CommonBasesTableViewController: UIViewController {
     }
     
     @objc func refreshButtonAction() {
-        for i in 0..<bases.count {
-            bases[i].baseTextFieldText = nil
-        }
-        guard let visibleCells = tableView.visibleCells as? [CommonBasesTableViewCell] else { return }
-        for i in 0..<visibleCells.count {
-            let index = visibleCells[i].tag
-            visibleCells[i].base = bases[index]
-        }
+        viewModel.clear(exclusive: nil)
     }
     
     func setupTableView() {
-        tableView.constraintTo(top: view.layoutMarginsGuide.topAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, topConstant: 0, bottomConstant: 0, leftConstant: 0, rightConstant: 0)
+        tableView.constraintTo(top: view.layoutMarginsGuide.topAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor)
     }
     
     private func setupColor() {
@@ -75,12 +79,7 @@ class CommonBasesTableViewController: UIViewController {
         }
     }
     
-    private func setupAds() {
-        bannerView = createAndLoadBannerView()
-        interstitial = createAndLoadInterstitial()
-    }
-    
-    func presentAlert(title: String, message: String, isUpgradeMessage: Bool) {
+    func presentAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: {(action) in
             self.setNeedsStatusBarAppearanceUpdate()
@@ -95,40 +94,36 @@ class CommonBasesTableViewController: UIViewController {
     }
 }
 
+extension CommonBasesTableViewController: CommonBasesViewModelDelegate {
+    @objc func reloadTableView() {
+        for cell in tableView.visibleCells {
+            guard let indexPath = tableView.indexPath(for: cell) else { continue }
+            let cell = cell as? CommonBasesTableViewCell
+            cell?.configure(with: viewModel.cellLayoutItems[indexPath.row])
+        }
+    }
+}
+
 extension CommonBasesTableViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bases.count
+        viewModel.cellLayoutItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBasesTableViewCell
-        cell.base = bases[indexPath.row]
-        cell.tag = indexPath.row
+        cell.configure(with: viewModel.cellLayoutItems[indexPath.row])
         cell.delegate = self
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-
 }
 
 extension CommonBasesTableViewController: CommonTableViewCellDelegate {
-    func presentCopiedAlert(message: String) {
-        self.presentAlert(title: message, message: "", isUpgradeMessage: false)
+    @objc func didChange(value: String, from baseValue: Int) {
+        viewModel.didChange(value: value, from: baseValue)
     }
     
-    func updateAllBases(bases: [Base], excepted tag: Int) {
-        self.bases = bases
-        guard let visibleCells = tableView.visibleCells as? [CommonBasesTableViewCell] else { return }
-        for i in 0..<visibleCells.count {
-            if i == tag {
-                continue
-            }
-            let index = visibleCells[i].tag
-            visibleCells[i].base = bases[index]
-        }
+    func presentCopiedAlert(message: String) {
+        self.presentAlert(title: message, message: "")
     }
 }
 
