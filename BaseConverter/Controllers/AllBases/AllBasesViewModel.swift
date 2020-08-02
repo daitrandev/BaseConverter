@@ -15,6 +15,7 @@ protocol AllBasesViewModelType: class {
     var isPurchased: Bool { get }
     var delegate: AllBasesViewModelDelegate? { get set }
     func didChange(value: String, from base: Int)
+    func clear(exclusive baseValue: Int?)
 }
 
 class AllBasesViewModel: AllBasesViewModelType {

@@ -168,6 +168,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		F838D42324D7080600BB8A98 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				230E7F8A208A41250081F401 /* MainTabBarController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		F83CDEEC24C8806B0090B623 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,8 +267,8 @@
 		FA1523922220EE1000784B11 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F838D42324D7080600BB8A98 /* Main */,
 				F82A725B24D6BBCD00AB6E77 /* PurchasingPopup */,
-				230E7F8A208A41250081F401 /* MainTabBarController.swift */,
 				FA1523862220ED0300784B11 /* AllBases */,
 				FA1523852220ECF800784B11 /* CommonBases */,
 			);

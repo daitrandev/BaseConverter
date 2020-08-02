@@ -86,6 +86,12 @@ class CommonBasesTableViewCell: UITableViewCell {
         baseTextField.attributedPlaceholder = attributedPlaceHolder
         baseValue = item.base.rawValue
         allowingCharacters = item.base.allowingCharacters
+        
+        if item.base.rawValue <= 10 {
+            baseTextField.keyboardType = .decimalPad
+        } else {
+            baseTextField.keyboardType = .numbersAndPunctuation
+        }
     }
     
     func configure(with item: AllBasesViewModel.CellLayoutItem) {
@@ -105,6 +111,12 @@ class CommonBasesTableViewCell: UITableViewCell {
         baseTextField.attributedPlaceholder = attributedPlaceHolder
         baseValue = item.baseValue
         allowingCharacters = item.allowingCharacters
+        
+        if item.baseValue <= 10 {
+            baseTextField.keyboardType = .decimalPad
+        } else {
+            baseTextField.keyboardType = .numbersAndPunctuation
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

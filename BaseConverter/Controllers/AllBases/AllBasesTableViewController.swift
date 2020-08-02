@@ -50,6 +50,10 @@ class AllBasesTableViewController: CommonBasesTableViewController {
     override func didChange(value: String, from baseValue: Int) {
         viewModel.didChange(value: value, from: baseValue)
     }
+    
+    override func didTapClear() {
+        viewModel.clear(exclusive: nil)
+    }
 }
 
 extension AllBasesTableViewController: AllBasesViewModelDelegate { }
