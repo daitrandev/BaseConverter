@@ -8,7 +8,7 @@
 
 import KeychainSwift
 
-class GlobalKeychain {
+enum GlobalKeychain {
     private static let keychain: KeychainSwift = {
         let keychain = KeychainSwift()
         return keychain
@@ -20,5 +20,9 @@ class GlobalKeychain {
     
     static func set(value: Bool, for key: String) {
         keychain.set(value, forKey: key)
+    }
+    
+    static func clear(for key: String) {
+        keychain.delete(key)
     }
 }

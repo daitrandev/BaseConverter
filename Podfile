@@ -8,4 +8,5 @@ target 'BaseConverter' do
   # Pods for BaseConverter
   pod 'Google-Mobile-Ads-SDK'
   pod 'IQKeyboardManagerSwift'
+  pod 'MBProgressHUD'
 end

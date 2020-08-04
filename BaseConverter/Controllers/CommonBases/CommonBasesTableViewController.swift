@@ -104,6 +104,7 @@ class CommonBasesTableViewController: UIViewController {
     
     @objc private func didTapUnlock() {
         tabBarController?.tabBar.layer.zPosition = -1
+        tabBarController?.tabBar.isUserInteractionEnabled = false
         
         let vc = PurchasingPopupViewController()
         vc.delegate = self
@@ -150,6 +151,7 @@ extension CommonBasesTableViewController: PurchasingPopupViewControllerDelegate 
     
     func showTabbar() {
         tabBarController?.tabBar.layer.zPosition = 0
+        tabBarController?.tabBar.isUserInteractionEnabled = true
     }
 }
 
