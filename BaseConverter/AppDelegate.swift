@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = MainTabBarController()
         
         IQKeyboardManager.shared.enable = true
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         if let isPurchased = GlobalKeychain.getBool(for: KeychainKey.isPurchased), isPurchased {
             return true
