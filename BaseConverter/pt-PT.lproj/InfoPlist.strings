@@ -1,9 +1,0 @@
-/* 
-  InfoPlist.strings
-  BaseConverter
-
-  Created by Dai Tran on 4/26/18.
-  Copyright © 2018 Dai Tran. All rights reserved.
-*/
-"CFBundleDisplayName" = "Conversor de base";
-"NSHumanReadableCopyright" = "Copyright © 2018 Dai Tran. All rights reserved.";
