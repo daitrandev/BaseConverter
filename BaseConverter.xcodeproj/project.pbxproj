@@ -128,7 +128,6 @@
 				FA15238D2220ED9800784B11 /* Models */,
 				F8408F3124D55BE000A39C8C /* Resources */,
 				F83CDEEC24C8806B0090B623 /* Utils */,
-				F841AF8224D650E100077AD3 /* Views */,
 			);
 			path = BaseConverter;
 			sourceTree = "<group>";
@@ -220,21 +219,6 @@
 				230E7F79208A2F2C0081F401 /* Assets.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		F841AF8224D650E100077AD3 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F841AF8324D650EA00077AD3 /* Base */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		F841AF8324D650EA00077AD3 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		FA1523852220ECF800784B11 /* CommonBases */ = {
@@ -539,7 +523,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = op;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B8SW848K42;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -551,7 +535,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -565,7 +549,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = op;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B8SW848K42;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -577,7 +561,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.BaseConverterFree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;

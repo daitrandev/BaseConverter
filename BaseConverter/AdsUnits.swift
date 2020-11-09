@@ -19,5 +19,5 @@ let bannerAdsUnitID = "ca-app-pub-7005013141953077/4204266995"
 #if DEBUG
 let interstialAdsUnitID = "ca-app-pub-3940256099942544/4411468910"
 #elseif RELEASE
-let interstialAdsUnitID = "ca-app-pub-7005013141953077/5926785468"
+let interstialAdsUnitID = "ca-app-pub-7005013141953077/2182325038"
 #endif
